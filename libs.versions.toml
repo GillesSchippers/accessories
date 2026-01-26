@@ -30,7 +30,7 @@ neoforge_loader_range="[4,)"
 
 mixinextras = "0.5.0"
 
-modmenu = "1.21.11"        # local build for 1.21.11
+modmenu = "v17.0.0-beta.2"        # local build for 1.21.11
 
 endec         = "0.1.11"
 endec_netty   = "0.1.5"
