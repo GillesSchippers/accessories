@@ -5,6 +5,7 @@ pluginManagement {
         maven("https://maven.neoforged.net/releases/")
         maven("https://maven.parchmentmc.org")
         mavenCentral()
+        mavenLocal()
         gradlePluginPortal()
     }
 }
