@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: accessories-artifacts
-          path: accessories/build/libs/
+          path: accessories/fabric/build/libs/
