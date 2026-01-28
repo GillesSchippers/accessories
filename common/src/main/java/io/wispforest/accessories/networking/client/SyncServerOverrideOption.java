@@ -24,6 +24,9 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
     private static final Queue<PendingUpdate> pendingUpdates = new LinkedList<>();
     private static final int MAX_PENDING_UPDATES = 100;
     private static final int MAX_RETRY_ATTEMPTS = 5;
+    
+    // Flag to prevent sending updates back to server when we're processing a server sync
+    private static final ThreadLocal<Boolean> isProcessingServerSync = ThreadLocal.withInitial(() -> false);
 
     public static final StructEndec<SyncServerOverrideOption> ENDEC = StructEndecBuilder.of(
         Endec.STRING.fieldOf("config_id", SyncServerOverrideOption::configId),
@@ -51,6 +54,11 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
     }
 
     public static <T> void sendUpdatePacket(Option<T> option) {
+        // Don't send updates back to server if we're currently processing a server sync
+        if (isProcessingServerSync.get()) {
+            return;
+        }
+        
         var currentServer = ServerInstanceHolder.getInstance();
 
         if (currentServer == null) {
@@ -156,6 +164,13 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
 
         if (!option.detached()) return;
 
-        ((OptionAccessor) (Object) option).accessories$read(packet.buf());
+        // Set flag to prevent sending updates back to server during sync
+        isProcessingServerSync.set(true);
+        try {
+            ((OptionAccessor) (Object) option).accessories$read(packet.buf());
+        } finally {
+            // Always clear the flag, even if an exception occurs
+            isProcessingServerSync.set(false);
+        }
     }
 }
