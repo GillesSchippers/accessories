@@ -15,12 +15,26 @@ import io.wispforest.owo.serialization.endec.MinecraftEndecs;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 public record SyncServerOverrideOption(String configId, Option.Key optionKey, FriendlyByteBuf buf) {
     
     // Flag to prevent sending updates back to server when we're processing a server sync
     private static final ThreadLocal<Boolean> isProcessingServerSync = ThreadLocal.withInitial(() -> false);
+    
+    // Queue for updates when server instance is temporarily unavailable (integrated server startup)
+    private static final Queue<PendingUpdate> pendingUpdates = new LinkedList<>();
+    private static final int MAX_PENDING_UPDATES = 10;
+    private static final long PENDING_UPDATE_TIMEOUT_MS = 10000; // 10 seconds
+    
+    private record PendingUpdate(String configName, Option.Key optionKey, FriendlyByteBuf buf, long timestamp) {
+        boolean isExpired() {
+            return System.currentTimeMillis() - timestamp > PENDING_UPDATE_TIMEOUT_MS;
+        }
+    }
 
     public static final StructEndec<SyncServerOverrideOption> ENDEC = StructEndecBuilder.of(
         Endec.STRING.fieldOf("config_id", SyncServerOverrideOption::configId),
@@ -54,16 +68,87 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
         var currentServer = ServerInstanceHolder.getInstance();
 
         if (currentServer == null) {
-            // We're on a client connected to a dedicated server
-            // Clients cannot change server config - server is authoritative
-            // Config changes must be made server-side, then broadcast to clients
-            Accessories.LOGGER.debug("Ignoring config update for option '{}' - clients cannot change server config", option.key());
+            // Server instance not available - could be:
+            // 1. Client connected to dedicated server (config is server-authoritative, ignore)
+            // 2. Integrated server during initialization (queue and retry)
+            
+            // Queue the update for potential retry
+            queuePendingUpdate(option);
             return;
         }
 
         // We're on an integrated server (singleplayer/LAN) or the actual dedicated server
         // Broadcast to all clients
         sendUpdatePacketDirect(currentServer, option);
+        
+        // Try to flush any pending updates now that server is available
+        flushPendingUpdates(currentServer);
+    }
+    
+    private static <T> void queuePendingUpdate(Option<T> option) {
+        // Remove expired entries first
+        cleanupExpiredUpdates();
+        
+        if (pendingUpdates.size() >= MAX_PENDING_UPDATES) {
+            Accessories.LOGGER.debug("Pending update queue is full, discarding oldest update for option '{}'", option.key());
+            pendingUpdates.poll();
+        }
+        
+        var buf = new FriendlyByteBuf(Unpooled.buffer());
+        ((OptionAccessor) (Object) option).accessories$write(buf);
+        
+        pendingUpdates.offer(new PendingUpdate(option.configName(), option.key(), buf, System.currentTimeMillis()));
+        
+        Accessories.LOGGER.debug("Queued config update for option '{}' (queue size: {})", option.key(), pendingUpdates.size());
+    }
+    
+    private static void cleanupExpiredUpdates() {
+        Iterator<PendingUpdate> iterator = pendingUpdates.iterator();
+        while (iterator.hasNext()) {
+            PendingUpdate update = iterator.next();
+            if (update.isExpired()) {
+                iterator.remove();
+                Accessories.LOGGER.debug("Removed expired pending update for option '{}'", update.optionKey);
+            }
+        }
+    }
+    
+    /**
+     * Attempts to flush pending updates when server becomes available.
+     * Called automatically when sendUpdatePacket() detects a server instance.
+     * Can also be called manually (e.g., on server start event).
+     */
+    public static void flushPendingUpdates(net.minecraft.server.MinecraftServer server) {
+        if (server == null || pendingUpdates.isEmpty()) return;
+        
+        cleanupExpiredUpdates();
+        
+        int flushed = 0;
+        while (!pendingUpdates.isEmpty()) {
+            PendingUpdate pending = pendingUpdates.poll();
+            
+            try {
+                var packet = new SyncServerOverrideOption(pending.configName, pending.optionKey, pending.buf);
+                AccessoriesNetworking.sendToAllPlayers(server, packet);
+                flushed++;
+            } catch (Exception e) {
+                Accessories.LOGGER.warn("Failed to flush pending config update for '{}': {}", pending.optionKey, e.getMessage());
+            }
+        }
+        
+        if (flushed > 0) {
+            Accessories.LOGGER.debug("Flushed {} pending config update(s)", flushed);
+        }
+    }
+    
+    /**
+     * Clears all pending updates. Useful for cleanup.
+     */
+    public static void clearPendingUpdates() {
+        if (!pendingUpdates.isEmpty()) {
+            Accessories.LOGGER.debug("Clearing {} pending config update(s)", pendingUpdates.size());
+            pendingUpdates.clear();
+        }
     }
 
     private static <T> void sendUpdatePacketDirect(net.minecraft.server.MinecraftServer server, Option<T> option) {
