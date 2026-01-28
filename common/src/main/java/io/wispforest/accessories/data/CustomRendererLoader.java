@@ -355,7 +355,14 @@ public class CustomRendererLoader extends SimpleManagedEndecDataLoader<RawRender
 
     // TODO: I KNOW ITS UNSAFEISH!!!!
     private @NotNull ResourceManager getResourceManager(boolean isClientSide) {
-        if (!isClientSide) return ServerInstanceHolder.getInstance().getResourceManager();
+        if (!isClientSide) {
+            var server = ServerInstanceHolder.getInstance();
+            if (server != null) return server.getResourceManager();
+            
+            // Fallback to client manager if server is not available
+            LOGGER.warn("Server instance not available, falling back to client resource manager");
+            return getClientManger();
+        }
 
         return getClientManger();
     }
