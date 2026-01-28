@@ -76,10 +76,12 @@
     "SimpleJsonResourceReloadListenerAccessor",
     "SimpleJsonResourceReloadListenerMixin",
     "StateHolderAccessor",
+    "owo.ConfigSynchronizerAccessor",
     "owo.ConfigWrapperAccessor",
     "owo.DumpdataCommandMixin",
     "owo.NbtDeserializerMixin",
     "owo.NbtDeserializerMixin$SequenceMixin",
+    "owo.OptionAccessor",
     "owo.TagValueInputAccessor",
     "owo.TagValueOutputAccessor"
   ],
