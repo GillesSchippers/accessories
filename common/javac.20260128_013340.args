@@ -1,3 +1,0 @@
--cp
-/dev/null
-src/test/java/io/wispforest/accessories/utils/ServerInstanceHolderTest.java
