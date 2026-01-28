@@ -15,15 +15,26 @@ import io.wispforest.owo.serialization.endec.MinecraftEndecs;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.Consumer;
 
 public record SyncServerOverrideOption(String configId, Option.Key optionKey, FriendlyByteBuf buf) {
-
+    
+    // Flag to prevent sending updates back to server when we're processing a server sync
+    private static final ThreadLocal<Boolean> isProcessingServerSync = ThreadLocal.withInitial(() -> false);
+    
+    // Queue for updates when server instance is temporarily unavailable (integrated server startup)
     private static final Queue<PendingUpdate> pendingUpdates = new LinkedList<>();
-    private static final int MAX_PENDING_UPDATES = 100;
-    private static final int MAX_RETRY_ATTEMPTS = 5;
+    private static final int MAX_PENDING_UPDATES = 10;
+    private static final long PENDING_UPDATE_TIMEOUT_MS = 10000; // 10 seconds
+    
+    private record PendingUpdate(String configName, Option.Key optionKey, FriendlyByteBuf buf, long timestamp) {
+        boolean isExpired() {
+            return System.currentTimeMillis() - timestamp > PENDING_UPDATE_TIMEOUT_MS;
+        }
+    }
 
     public static final StructEndec<SyncServerOverrideOption> ENDEC = StructEndecBuilder.of(
         Endec.STRING.fieldOf("config_id", SyncServerOverrideOption::configId),
@@ -31,8 +42,6 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
         MinecraftEndecs.PACKET_BYTE_BUF.fieldOf("buf", SyncServerOverrideOption::buf),
         SyncServerOverrideOption::new
     );
-
-    private record PendingUpdate(String configName, Option.Key optionKey, FriendlyByteBuf buf, int retryCount) {}
 
     public static <T> void hookUpdate(Consumer<Consumer<T>> hook, ConfigWrapper<?> wrapper, Option.Key optionKey) {
         hook.accept(object -> sendUpdatePacket(wrapper, optionKey));
@@ -51,32 +60,95 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
     }
 
     public static <T> void sendUpdatePacket(Option<T> option) {
+        // Don't send updates back to server if we're currently processing a server sync
+        if (isProcessingServerSync.get()) {
+            return;
+        }
+        
         var currentServer = ServerInstanceHolder.getInstance();
 
         if (currentServer == null) {
-            // Queue the update for retry
+            // Server instance not available - could be:
+            // 1. Client connected to dedicated server (config is server-authoritative, ignore)
+            // 2. Integrated server during initialization (queue and retry)
+            
+            // Queue the update for potential retry
             queuePendingUpdate(option);
             return;
         }
 
+        // We're on an integrated server (singleplayer/LAN) or the actual dedicated server
+        // Broadcast to all clients
         sendUpdatePacketDirect(currentServer, option);
         
         // Try to flush any pending updates now that server is available
         flushPendingUpdates(currentServer);
     }
-
+    
     private static <T> void queuePendingUpdate(Option<T> option) {
+        // Remove expired entries first
+        cleanupExpiredUpdates();
+        
         if (pendingUpdates.size() >= MAX_PENDING_UPDATES) {
-            Accessories.LOGGER.warn("Pending update queue is full, discarding oldest update for option '{}'", option.key());
-            pendingUpdates.poll(); // Remove oldest
+            Accessories.LOGGER.debug("Pending update queue is full, discarding oldest update for option '{}'", option.key());
+            pendingUpdates.poll();
         }
-
+        
         var buf = new FriendlyByteBuf(Unpooled.buffer());
         ((OptionAccessor) (Object) option).accessories$write(buf);
-
-        pendingUpdates.offer(new PendingUpdate(option.configName(), option.key(), buf, 0));
+        
+        pendingUpdates.offer(new PendingUpdate(option.configName(), option.key(), buf, System.currentTimeMillis()));
         
         Accessories.LOGGER.debug("Queued config update for option '{}' (queue size: {})", option.key(), pendingUpdates.size());
+    }
+    
+    private static void cleanupExpiredUpdates() {
+        Iterator<PendingUpdate> iterator = pendingUpdates.iterator();
+        while (iterator.hasNext()) {
+            PendingUpdate update = iterator.next();
+            if (update.isExpired()) {
+                iterator.remove();
+                Accessories.LOGGER.debug("Removed expired pending update for option '{}'", update.optionKey);
+            }
+        }
+    }
+    
+    /**
+     * Attempts to flush pending updates when server becomes available.
+     * Called automatically when sendUpdatePacket() detects a server instance.
+     * Can also be called manually (e.g., on server start event).
+     */
+    public static void flushPendingUpdates(net.minecraft.server.MinecraftServer server) {
+        if (server == null || pendingUpdates.isEmpty()) return;
+        
+        cleanupExpiredUpdates();
+        
+        int flushed = 0;
+        while (!pendingUpdates.isEmpty()) {
+            PendingUpdate pending = pendingUpdates.poll();
+            
+            try {
+                var packet = new SyncServerOverrideOption(pending.configName, pending.optionKey, pending.buf);
+                AccessoriesNetworking.sendToAllPlayers(server, packet);
+                flushed++;
+            } catch (Exception e) {
+                Accessories.LOGGER.warn("Failed to flush pending config update for '{}': {}", pending.optionKey, e.getMessage());
+            }
+        }
+        
+        if (flushed > 0) {
+            Accessories.LOGGER.debug("Flushed {} pending config update(s)", flushed);
+        }
+    }
+    
+    /**
+     * Clears all pending updates. Useful for cleanup.
+     */
+    public static void clearPendingUpdates() {
+        if (!pendingUpdates.isEmpty()) {
+            Accessories.LOGGER.debug("Clearing {} pending config update(s)", pendingUpdates.size());
+            pendingUpdates.clear();
+        }
     }
 
     private static <T> void sendUpdatePacketDirect(net.minecraft.server.MinecraftServer server, Option<T> option) {
@@ -88,57 +160,9 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
     }
 
     /**
-     * Attempts to flush pending updates when server becomes available.
-     * Called automatically when sendUpdatePacket() detects a server instance.
-     * Can also be called manually to retry pending updates.
+     * Handles packets received on the client from the server.
+     * Applies the server's authoritative config value.
      */
-    public static void flushPendingUpdates(net.minecraft.server.MinecraftServer server) {
-        if (server == null || pendingUpdates.isEmpty()) return;
-
-        int flushed = 0;
-
-        // Process all pending updates
-        while (!pendingUpdates.isEmpty()) {
-            PendingUpdate pending = pendingUpdates.poll();
-
-            try {
-                var packet = new SyncServerOverrideOption(pending.configName, pending.optionKey, pending.buf);
-                AccessoriesNetworking.sendToAllPlayers(server, packet);
-                flushed++;
-            } catch (Exception e) {
-                if (pending.retryCount < MAX_RETRY_ATTEMPTS) {
-                    // Re-queue with incremented retry count
-                    pendingUpdates.offer(new PendingUpdate(
-                        pending.configName,
-                        pending.optionKey,
-                        pending.buf,
-                        pending.retryCount + 1
-                    ));
-                    
-                    Accessories.LOGGER.warn("Failed to send pending config update for '{}', will retry (attempt {}/{})",
-                        pending.optionKey, pending.retryCount + 1, MAX_RETRY_ATTEMPTS);
-                } else {
-                    Accessories.LOGGER.error("Failed to send config update for '{}' after {} attempts, discarding",
-                        pending.optionKey, MAX_RETRY_ATTEMPTS, e);
-                }
-            }
-        }
-
-        if (flushed > 0) {
-            Accessories.LOGGER.info("Flushed {} pending config update(s) to server", flushed);
-        }
-    }
-
-    /**
-     * Clears all pending updates. Useful for cleanup when disconnecting.
-     */
-    public static void clearPendingUpdates() {
-        if (!pendingUpdates.isEmpty()) {
-            Accessories.LOGGER.debug("Clearing {} pending config update(s)", pendingUpdates.size());
-            pendingUpdates.clear();
-        }
-    }
-
     public static void handlePacket(SyncServerOverrideOption packet, Player player) {
         var wrapper = ConfigSynchronizerAccessor.KNOWN_CONFIGS().get(packet.configId);
 
@@ -156,6 +180,13 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
 
         if (!option.detached()) return;
 
-        ((OptionAccessor) (Object) option).accessories$read(packet.buf());
+        // Set flag to prevent sending updates back to server during sync
+        isProcessingServerSync.set(true);
+        try {
+            ((OptionAccessor) (Object) option).accessories$read(packet.buf());
+        } finally {
+            // Always clear the flag, even if an exception occurs
+            isProcessingServerSync.set(false);
+        }
     }
 }
