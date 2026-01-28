@@ -9,11 +9,9 @@ import io.wispforest.accessories.utils.ServerInstanceHolder;
 import io.wispforest.endec.Endec;
 import io.wispforest.endec.StructEndec;
 import io.wispforest.endec.impl.StructEndecBuilder;
-import io.wispforest.owo.Owo;
 import io.wispforest.owo.config.ConfigWrapper;
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.serialization.endec.MinecraftEndecs;
-import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 
@@ -98,7 +96,6 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
         if (server == null || pendingUpdates.isEmpty()) return;
 
         int flushed = 0;
-        int failed = 0;
 
         // Process all pending updates
         while (!pendingUpdates.isEmpty()) {
@@ -109,8 +106,6 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
                 AccessoriesNetworking.sendToAllPlayers(server, packet);
                 flushed++;
             } catch (Exception e) {
-                failed++;
-                
                 if (pending.retryCount < MAX_RETRY_ATTEMPTS) {
                     // Re-queue with incremented retry count
                     pendingUpdates.offer(new PendingUpdate(
@@ -149,15 +144,13 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
 
         if (wrapper == null) {
             Accessories.LOGGER.warn("Unable to sync config value change to client as the wrapper '{}' dose not exists!", packet.configId());
-
             return;
         }
 
         var option = wrapper.optionForKey(packet.optionKey());
 
-        if (wrapper == null) {
+        if (option == null) {
             Accessories.LOGGER.warn("Unable to sync config value change to client as the wrapper '{}' dose not contain the given option '{}'!", packet.configId(), packet.optionKey());
-
             return;
         }
 
