@@ -19,6 +19,7 @@ import io.wispforest.accessories.misc.AccessoriesGameRules;
 import io.wispforest.accessories.networking.AccessoriesNetworking;
 import io.wispforest.accessories.networking.client.InvalidateEntityCache;
 import io.wispforest.accessories.networking.client.SyncEntireContainer;
+import io.wispforest.accessories.networking.client.SyncServerOverrideOption;
 import io.wispforest.accessories.utils.EndecUtils;
 import io.wispforest.accessories.utils.ServerInstanceHolder;
 import io.wispforest.owo.serialization.CodecUtils;
@@ -79,8 +80,16 @@ public class AccessoriesFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTING.register(ServerInstanceHolder::setInstance);
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> ServerInstanceHolder.setInstance(() -> null));
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+            ServerInstanceHolder.setInstance(server);
+            // Flush any pending config updates that were queued during initialization
+            SyncServerOverrideOption.flushPendingUpdates(server);
+        });
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+            ServerInstanceHolder.setInstance(() -> null);
+            // Clear any pending updates on server stop
+            SyncServerOverrideOption.clearPendingUpdates();
+        });
 
         Accessories.init();
 
