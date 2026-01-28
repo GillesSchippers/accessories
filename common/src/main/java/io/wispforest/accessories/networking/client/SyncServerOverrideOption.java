@@ -55,21 +55,15 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
 
         if (currentServer == null) {
             // We're on a client connected to a dedicated server
-            // Send the update request to the server, which will validate and broadcast back
-            sendUpdatePacketToServer(option);
-        } else {
-            // We're on an integrated server (singleplayer/LAN) or dedicated server
-            // Directly broadcast to all clients
-            sendUpdatePacketDirect(currentServer, option);
+            // Clients cannot change server config - server is authoritative
+            // Config changes must be made server-side, then broadcast to clients
+            Accessories.LOGGER.debug("Ignoring config update for option '{}' - clients cannot change server config", option.key());
+            return;
         }
-    }
-    
-    private static <T> void sendUpdatePacketToServer(Option<T> option) {
-        var buf = new FriendlyByteBuf(Unpooled.buffer());
-        ((OptionAccessor) (Object) option).accessories$write(buf);
 
-        var packet = new SyncServerOverrideOption(option.configName(), option.key(), buf);
-        AccessoriesNetworking.sendToServer(packet);
+        // We're on an integrated server (singleplayer/LAN) or the actual dedicated server
+        // Broadcast to all clients
+        sendUpdatePacketDirect(currentServer, option);
     }
 
     private static <T> void sendUpdatePacketDirect(net.minecraft.server.MinecraftServer server, Option<T> option) {
@@ -79,49 +73,11 @@ public record SyncServerOverrideOption(String configId, Option.Key optionKey, Fr
         var packet = new SyncServerOverrideOption(option.configName(), option.key(), buf);
         AccessoriesNetworking.sendToAllPlayers(server, packet);
     }
-    
-    /**
-     * Handles packets received on the server from clients.
-     * Validates the change and broadcasts to all clients (including sender).
-     */
-    public static void handleServerPacket(SyncServerOverrideOption packet, Player player) {
-        var wrapper = ConfigSynchronizerAccessor.KNOWN_CONFIGS().get(packet.configId);
-
-        if (wrapper == null) {
-            Accessories.LOGGER.warn("Unable to process config value change from client '{}' as the wrapper '{}' does not exist!", 
-                player.getName().getString(), packet.configId());
-            return;
-        }
-
-        var option = wrapper.optionForKey(packet.optionKey());
-
-        if (option == null) {
-            Accessories.LOGGER.warn("Unable to process config value change from client '{}' as the wrapper '{}' does not contain the given option '{}'!", 
-                player.getName().getString(), packet.configId(), packet.optionKey());
-            return;
-        }
-
-        if (!option.detached()) {
-            Accessories.LOGGER.warn("Client '{}' attempted to change non-detached option '{}'", 
-                player.getName().getString(), packet.optionKey());
-            return;
-        }
-
-        // Apply the change server-side
-        ((OptionAccessor) (Object) option).accessories$read(packet.buf());
-        
-        // Broadcast to all clients (including the sender)
-        var server = player.getServer();
-        if (server != null) {
-            sendUpdatePacketDirect(server, option);
-        }
-    }
 
     /**
      * Handles packets received on the client from the server.
      * Applies the server's authoritative config value.
      */
-
     public static void handlePacket(SyncServerOverrideOption packet, Player player) {
         var wrapper = ConfigSynchronizerAccessor.KNOWN_CONFIGS().get(packet.configId);
 
