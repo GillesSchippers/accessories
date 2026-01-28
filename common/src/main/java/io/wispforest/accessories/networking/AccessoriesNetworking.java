@@ -32,6 +32,8 @@ public class AccessoriesNetworking {
         CHANNEL.registerServerbound(SyncCosmeticToggle.class, SyncCosmeticToggle.ENDEC, serverHandler(SyncCosmeticToggle::handlePacket));
 
         CHANNEL.registerServerbound(SyncOptionChange.class, SyncOptionChange.ENDEC, serverHandler(SyncOptionChange::handlePacket));
+        
+        CHANNEL.registerServerbound(SyncServerOverrideOption.class, SyncServerOverrideOption.ENDEC, serverHandler(SyncServerOverrideOption::handleServerPacket));
 
         CHANNEL.registerServerbound(ContainerClose.class, ContainerClose.ENDEC, serverHandler(ContainerClose::handlePacket));
 
