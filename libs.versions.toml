@@ -37,10 +37,10 @@ endec_netty   = "0.1.5"
 endec_gson    = "0.1.6"
 endec_jankson = "0.1.6"
 
-owo_fabric   = "0.12.24+1.21.11"
+owo_fabric   = "1.0.2+1.21.11"
 owo_neoforge = "0.12.27+1.21.11"
 
-owo_fabric_range   = ">=0.12.24+1.21.11"
+owo_fabric_range   = ">=1.0.2+1.21.11"
 owo_neoforge_range = "[0.12.27+1.21.11,)"
 
 jankson = "1.2.2"
