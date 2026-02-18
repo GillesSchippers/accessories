@@ -2,8 +2,8 @@ package io.wispforest.accessories.mixin.client.owo;
 
 import io.wispforest.accessories.client.gui.components.ExtendedScrollContainer;
 import io.wispforest.owo.ui.container.ScrollContainer;
-import io.wispforest.owo.ui.container.WrappingParentComponent;
-import io.wispforest.owo.ui.core.Component;
+import io.wispforest.owo.ui.container.WrappingParentUIComponent;
+import io.wispforest.owo.ui.core.UIComponent;
 import io.wispforest.owo.ui.core.OwoUIDrawContext;
 import io.wispforest.owo.ui.core.Sizing;
 import org.objectweb.asm.Opcodes;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ScrollContainer.class, remap = false)
-public abstract class ScrollContainerMixin<C extends Component> extends WrappingParentComponent<C> {
+public abstract class ScrollContainerMixin<C extends UIComponent> extends WrappingParentUIComponent<C> {
     @Shadow @Final protected ScrollContainer.ScrollDirection direction;
 
     @Shadow protected int scrollbarOffset;

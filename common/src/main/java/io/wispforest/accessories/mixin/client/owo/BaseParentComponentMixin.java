@@ -4,15 +4,15 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.wispforest.accessories.client.gui.AccessoriesScreen;
 import io.wispforest.accessories.client.gui.components.ComponentUtils;
-import io.wispforest.owo.ui.base.BaseParentComponent;
+import io.wispforest.owo.ui.base.BaseParentUIComponent;
 import io.wispforest.owo.ui.core.OwoUIDrawContext;
-import io.wispforest.owo.ui.core.ParentComponent;
+import io.wispforest.owo.ui.core.ParentUIComponent;
 import io.wispforest.owo.ui.core.PositionedRectangle;
 import io.wispforest.owo.util.pond.OwoSlotExtension;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(value = BaseParentComponent.class, remap = false)
+@Mixin(value = BaseParentUIComponent.class, remap = false)
 public abstract class BaseParentComponentMixin {
 
     //--
@@ -24,7 +24,7 @@ public abstract class BaseParentComponentMixin {
         if (!result) {
             if (other instanceof AccessoriesScreen.ExtendedSlotComponent slotComponent) {
                 ((OwoSlotExtension) slotComponent.slot()).owo$setDisabledOverride(true);
-            } else if (other instanceof ParentComponent parentComponent) {
+            } else if (other instanceof ParentUIComponent parentComponent) {
                 ComponentUtils.recursiveSearch(parentComponent, AccessoriesScreen.ExtendedSlotComponent.class, slotComponent -> {
                     ((OwoSlotExtension) slotComponent.slot()).owo$setDisabledOverride(true);
                 });
