@@ -1,7 +1,7 @@
 package io.wispforest.accessories.client.gui.components;
 
 import io.wispforest.owo.ui.base.BaseUIComponent;
-import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.OwoUIGraphics;
 import io.wispforest.owo.ui.core.Sizing;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.render.TextureSetup;
@@ -31,11 +31,11 @@ public class PixelPerfectTextureComponent extends BaseUIComponent {
     }
 
     @Override
-    public void draw(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta) {
+    public void draw(OwoUIGraphics context, int mouseX, int mouseY, float partialTicks, float delta) {
         drawPixelPerfectTextureQuad(context, texture, this.x(), this.y(), this.width(), this.height());
     }
 
-    public static void drawPixelPerfectTextureQuad(OwoUIDrawContext context, Identifier texture, int x1, int y1, int width, int height) {
+    public static void drawPixelPerfectTextureQuad(OwoUIGraphics context, Identifier texture, int x1, int y1, int width, int height) {
         int x2 = x1 + width;
         int y2 = y1 + height;
 

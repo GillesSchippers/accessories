@@ -76,7 +76,7 @@ public class ComponentUtils {
         renderSpectrumOutlines(context, slotComponents);
     };
 
-    public static void renderSpectrumOutlines(OwoUIDrawContext context, List<AccessoriesScreen.ExtendedSlotComponent> slotComponents) {
+    public static void renderSpectrumOutlines(OwoUIGraphics context, List<AccessoriesScreen.ExtendedSlotComponent> slotComponents) {
         for (var slotComponent : slotComponents) {
             var slot = slotComponent.slot();
 
@@ -188,7 +188,7 @@ public class ComponentUtils {
         return VANILLA;
     }
 
-    public static void recursiveSearchSlots(ParentComponent parentComponent, Consumer<AccessoriesScreen.ExtendedSlotComponent> action) {
+    public static void recursiveSearchSlots(ParentUIComponent parentComponent, Consumer<AccessoriesScreen.ExtendedSlotComponent> action) {
         recursiveSearch(parentComponent, AccessoriesScreen.ExtendedSlotComponent.class, action);
     }
 
@@ -299,11 +299,11 @@ public class ComponentUtils {
         return createIconButton(action, size, null, builder, (context, buttonComponent) -> textureGetter.apply(buttonComponent));
     }
 
-    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, Consumer<ButtonComponent> builder, BiFunction<OwoUIDrawContext, ButtonComponent, Identifier> textureGetter) {
+    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, Consumer<ButtonComponent> builder, BiFunction<OwoUIGraphics, ButtonComponent, Identifier> textureGetter) {
         return createIconButton(action, size, null, builder, textureGetter);
     }
 
-    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, String id, Consumer<ButtonComponent> builder, BiFunction<OwoUIDrawContext, ButtonComponent, Identifier> textureGetter) {
+    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, String id, Consumer<ButtonComponent> builder, BiFunction<OwoUIGraphics, ButtonComponent, Identifier> textureGetter) {
         return verticalFlow(Sizing.content(), Sizing.content())
                 .child(
                         UIComponents.button(Component.empty(), action)

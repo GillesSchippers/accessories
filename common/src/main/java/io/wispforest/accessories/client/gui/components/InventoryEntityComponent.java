@@ -3,7 +3,7 @@ package io.wispforest.accessories.client.gui.components;
 import com.mojang.math.Axis;
 import io.wispforest.owo.ui.component.EntityComponent;
 import io.wispforest.owo.ui.core.Component;
-import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.OwoUIGraphics;
 import io.wispforest.owo.ui.core.Sizing;
 import io.wispforest.owo.ui.renderstate.EntityElementRenderState;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
@@ -85,9 +85,9 @@ public class InventoryEntityComponent<E extends Entity> extends EntityComponent<
     public float xOffset = 0.0f;
     public float yOffset = 0.0f;
 
-    private TriConsumer<OwoUIDrawContext, Component, List<Runnable>> renderWrapping = (ctx, component, runnables) -> runnables.forEach(Runnable::run);
+    private TriConsumer<OwoUIGraphics, Component, List<Runnable>> renderWrapping = (ctx, component, runnables) -> runnables.forEach(Runnable::run);
 
-    public InventoryEntityComponent<E> renderWrapping(TriConsumer<OwoUIDrawContext, Component, List<Runnable>> renderWrapping) {
+    public InventoryEntityComponent<E> renderWrapping(TriConsumer<OwoUIGraphics, Component, List<Runnable>> renderWrapping) {
         this.renderWrapping = renderWrapping;
 
         return this;
@@ -144,7 +144,7 @@ public class InventoryEntityComponent<E extends Entity> extends EntityComponent<
     }
 
     @Override
-    public void draw(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta) {
+    public void draw(OwoUIGraphics context, int mouseX, int mouseY, float partialTicks, float delta) {
         if(!(entity instanceof LivingEntity living)) {
             super.draw(context, mouseX, mouseY, partialTicks, delta);
 
@@ -190,7 +190,7 @@ public class InventoryEntityComponent<E extends Entity> extends EntityComponent<
         );
     }
 
-    private void renderLiving(OwoUIDrawContext context, LivingEntity living, int mouseX, int mouseY, float partialTicks, boolean isLeftSide) {
+    private void renderLiving(OwoUIGraphics context, LivingEntity living, int mouseX, int mouseY, float partialTicks, boolean isLeftSide) {
         var matrix = new Matrix4f();
 
         transformMatrixStack(matrix, isLeftSide);

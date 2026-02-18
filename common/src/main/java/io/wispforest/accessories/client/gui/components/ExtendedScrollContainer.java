@@ -136,7 +136,7 @@ public class ExtendedScrollContainer<C extends UIComponent> extends ScrollContai
     }
 
     @Override
-    protected void drawChildren(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta, List<? extends UIComponent> children) {
+    protected void drawChildren(OwoUIGraphics context, int mouseX, int mouseY, float partialTicks, float delta, List<? extends UIComponent> children) {
         if (this.customClippingInsets != Insets.none()) {
             context.enableScissor(this.x + customClippingInsets.left(),
                 this.y + customClippingInsets.top(),
