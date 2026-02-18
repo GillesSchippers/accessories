@@ -187,8 +187,10 @@ public record AccessoryItemAttributeModifiers(List<AccessoryItemAttributeModifie
                     }
 
                     return context.requireAttributeValue(RegistriesAttribute.REGISTRIES)
-                            .registryManager()
-                            .lookupOrThrow(Registries.ATTRIBUTE)
+                            .infoGetter()
+                            .lookup(Registries.ATTRIBUTE)
+                            .orElseThrow(IllegalStateException::new)
+                            .getter()
                             .getKey(attribute);
                 }
         );
