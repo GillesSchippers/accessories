@@ -9,7 +9,7 @@ import io.wispforest.accessories.menu.SlotTypeAccessible;
 import io.wispforest.accessories.networking.AccessoriesNetworking;
 import io.wispforest.accessories.networking.server.SyncCosmeticToggle;
 import io.wispforest.accessories.pond.ScissorStackManipulation;
-import io.wispforest.owo.ui.base.BaseOwoHandledScreen;
+import io.wispforest.owo.ui.base.BaseOwoContainerScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.component.UIComponents;
 import io.wispforest.owo.ui.container.UIContainers;
@@ -317,7 +317,7 @@ public class ComponentUtils {
                 );
     }
 
-    public static <C extends BaseOwoHandledScreen.SlotComponent> io.wispforest.owo.ui.core.UIComponent createCraftingComponent(int start, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler, boolean isVertical) {
+    public static <C extends BaseOwoContainerScreen.SlotComponent> io.wispforest.owo.ui.core.UIComponent createCraftingComponent(int start, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler, boolean isVertical) {
         for (int i = start; i < 5 + start; i++) slotEnabler.accept(i);
 
         var craftingLayout = isVertical ? verticalFlow(Sizing.fixed(18 * 2), Sizing.content()) : horizontalFlow(Sizing.content(), Sizing.fixed(18 * 2));
@@ -349,7 +349,7 @@ public class ComponentUtils {
                 .padding(Insets.of(7, 7, 4, 7));
     }
 
-    public static <C extends BaseOwoHandledScreen.SlotComponent> io.wispforest.owo.ui.core.UIComponent createPlayerInv(int start, int end, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler) {
+    public static <C extends BaseOwoContainerScreen.SlotComponent> io.wispforest.owo.ui.core.UIComponent createPlayerInv(int start, int end, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler) {
         var playerLayout = verticalFlow(Sizing.content(), Sizing.content());
 
         int row = 0;
