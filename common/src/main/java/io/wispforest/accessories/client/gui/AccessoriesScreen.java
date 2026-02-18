@@ -132,7 +132,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
     }
 
     @Override
-    public <C extends io.wispforest.owo.ui.core.Component> C component(Class<C> expectedClass, String id) {
+    public <C extends io.wispforest.owo.ui.core.UIComponent> C component(Class<C> expectedClass, String id) {
         return super.component(expectedClass, id);
     }
 
@@ -448,7 +448,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
                 .verticalAlignment(VerticalAlignment.CENTER)
                 .surface(Surface.VANILLA_TRANSLUCENT);
 
-        var baseChildren = new ArrayList<io.wispforest.owo.ui.core.Component>();
+        var baseChildren = new ArrayList<io.wispforest.owo.ui.core.UIComponent>();
 
         var accessoriesComponent = createAccessoriesComponent();
 
@@ -710,7 +710,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
     public void setupPadding() {
         if (this.topComponent == null) return;
 
-        var hasSideBar = this.rootComponent().childById(io.wispforest.owo.ui.core.Component.class, "side_bar_holder") != null;
+        var hasSideBar = this.rootComponent().childById(io.wispforest.owo.ui.core.UIComponent.class, "side_bar_holder") != null;
         var primaryLayout = rootComponent().childById(FlowLayout.class, "armor_entity_layout");
 
         setupPadding(this.topComponent, hasSideBar, primaryLayout);
@@ -732,7 +732,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
 
                 if (this.getDefaultedData(PlayerOptions.SIDE_WIDGET_POSITION)) {
                     roundingOffset = (this.getDefaultedData(PlayerOptions.MAIN_WIDGET_POSITION) ? -1 : -3);
-                } else if(component(io.wispforest.owo.ui.core.Component.class, "group_filter_holder") == null && !this.getDefaultedData(PlayerOptions.MAIN_WIDGET_POSITION)) {
+                } else if(component(io.wispforest.owo.ui.core.UIComponent.class, "group_filter_holder") == null && !this.getDefaultedData(PlayerOptions.MAIN_WIDGET_POSITION)) {
                     roundingOffset = -2;
                 }
 
@@ -762,7 +762,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
         rebuildComponentRectangles = true;
     }
 
-    public io.wispforest.owo.ui.core.Component createEntityComponent() {
+    public io.wispforest.owo.ui.core.UIComponent createEntityComponent() {
         var sideBySideView = this.getDefaultedData(PlayerOptions.SIDE_BY_SIDE_ENTITY);
 
         return InventoryEntityComponent.of(Sizing.fixed(sideBySideView ? 162 : 108), Sizing.fixed(126), this.getMenu().targetEntityDefaulted())
@@ -828,7 +828,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
             hasSideBar = swapOrCreateSideBarComponent();
         } else {
             if(this.getMenu().selectedGroups().isEmpty()) {
-                var sideBarOptionsComponent = primaryLayout.childById(io.wispforest.owo.ui.core.Component.class, "accessories_toggle_panel");
+                var sideBarOptionsComponent = primaryLayout.childById(io.wispforest.owo.ui.core.UIComponent.class, "accessories_toggle_panel");
 
                 if (sideBarOptionsComponent != null) {
                     var sideParParent = sideBarOptionsComponent.parent();
@@ -883,7 +883,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
 
     //--
     @Nullable
-    private io.wispforest.owo.ui.core.Component createSideBarOptions() {
+    private io.wispforest.owo.ui.core.UIComponent createSideBarOptions() {
         var accessoriesTogglePanel = (FlowLayout) Containers.verticalFlow(Sizing.content(), Sizing.content())
                 .id("accessories_toggle_panel");
 
@@ -931,7 +931,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
     private ExtendedScrollContainer groupFilterScrollable = null;
 
     @Nullable
-    private io.wispforest.owo.ui.core.Component createGroupFilters() {
+    private io.wispforest.owo.ui.core.UIComponent createGroupFilters() {
         if (!this.getDefaultedData(PlayerOptions.SHOW_GROUP_FILTER)) return null;
 
         var groups = new ArrayList<>(SlotGroupLoader.getValidGroups(this.getMenu().targetEntityDefaulted()).keySet());
@@ -940,7 +940,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
 
         var usedSlots = this.getMenu().getUsedSlots();
 
-        var groupButtons = new ArrayList<io.wispforest.owo.ui.core.Component>();
+        var groupButtons = new ArrayList<io.wispforest.owo.ui.core.UIComponent>();
 
         for (SlotGroup group : groups) {
             var groupSlots = group.slots().stream()
@@ -1084,12 +1084,12 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
         }
     }
 
-    private io.wispforest.owo.ui.core.Component createCraftingGrid() {
+    private io.wispforest.owo.ui.core.UIComponent createCraftingGrid() {
         return ComponentUtils.createCraftingComponent(0, this::slotAsComponent, this::enableSlot, true)
                 .id("crafting_component");
     }
 
-    private io.wispforest.owo.ui.core.Component createCraftingToggleButton() {
+    private io.wispforest.owo.ui.core.UIComponent createCraftingToggleButton() {
         return ComponentUtils.createIconButton(
             btn -> {
                 AccessoriesNetworking
@@ -1123,7 +1123,7 @@ public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, Accessor
         if (option.equals(PlayerOptions.SHOW_CRAFTING_GRID)) {
             var buttonPanel = component(StackLayout.class, "entity_button_panel");
 
-            var craftingBtn = buttonPanel.childById(io.wispforest.owo.ui.core.Component.class, "crafting_grid_btn");
+            var craftingBtn = buttonPanel.childById(io.wispforest.owo.ui.core.UIComponent.class, "crafting_grid_btn");
 
             if (craftingBtn != null && Accessories.config().screenOptions.alwaysShowCraftingGrid()) {
                 buttonPanel.removeChild(craftingBtn);
