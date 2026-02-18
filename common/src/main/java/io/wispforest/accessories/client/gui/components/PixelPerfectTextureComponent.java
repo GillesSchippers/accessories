@@ -1,6 +1,6 @@
 package io.wispforest.accessories.client.gui.components;
 
-import io.wispforest.owo.ui.base.BaseComponent;
+import io.wispforest.owo.ui.base.BaseUIComponent;
 import io.wispforest.owo.ui.core.OwoUIDrawContext;
 import io.wispforest.owo.ui.core.Sizing;
 import net.minecraft.client.Minecraft;
@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import org.joml.Matrix3x2f;
 
-public class PixelPerfectTextureComponent extends BaseComponent {
+public class PixelPerfectTextureComponent extends BaseUIComponent {
 
     private final Identifier texture;
 

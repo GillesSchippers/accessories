@@ -25,7 +25,7 @@ import io.wispforest.accessories.networking.AccessoriesNetworking;
 import io.wispforest.accessories.networking.holder.SyncOptionChange;
 import io.wispforest.accessories.pond.ContainerScreenExtension;
 import io.wispforest.owo.mixin.ui.SlotAccessor;
-import io.wispforest.owo.ui.base.BaseOwoHandledScreen;
+import io.wispforest.owo.ui.base.BaseOwoContainerScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.container.UIContainers;
 import io.wispforest.owo.ui.container.FlowLayout;
@@ -55,7 +55,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class AccessoriesScreen extends BaseOwoHandledScreen<FlowLayout, AccessoriesMenu> implements AccessoriesScreenBase<AccessoriesMenu>, ContainerScreenExtension, PlayerOptionsAccess {
+public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, AccessoriesMenu> implements AccessoriesScreenBase<AccessoriesMenu>, ContainerScreenExtension, PlayerOptionsAccess {
 
     private static final Logger LOGGER = LogUtils.getLogger();
     private final @Nullable AbstractContainerScreen<AbstractContainerMenu> prevScreen;
