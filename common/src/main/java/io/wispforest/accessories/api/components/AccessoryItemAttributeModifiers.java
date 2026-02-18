@@ -190,7 +190,7 @@ public record AccessoryItemAttributeModifiers(List<AccessoryItemAttributeModifie
                             .infoGetter()
                             .lookup(Registries.ATTRIBUTE)
                             .orElseThrow(IllegalStateException::new);
-                    
+
                     return lookup.getResourceKey(attribute)
                             .orElseThrow(IllegalStateException::new)
                             .location();
