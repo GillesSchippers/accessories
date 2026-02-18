@@ -7,8 +7,8 @@ import io.wispforest.owo.config.ui.component.*;
 import io.wispforest.owo.ui.component.ButtonComponent;
 import io.wispforest.owo.ui.component.LabelComponent;
 import io.wispforest.owo.ui.container.FlowLayout;
-import io.wispforest.owo.ui.core.Component;
-import io.wispforest.owo.ui.core.ParentComponent;
+import io.wispforest.owo.ui.core.UIComponent;
+import io.wispforest.owo.ui.core.ParentUIComponent;
 import io.wispforest.owo.ui.core.Positioning;
 import io.wispforest.owo.ui.core.Sizing;
 import io.wispforest.owo.ui.parsing.UIModel;
@@ -50,7 +50,7 @@ public class ConfigurableStructLayout<T> extends FlowLayout {
 
     protected ConfigurableStructLayout<T> build(T value) {
         handlers.forEach((field, handler) -> {
-            var component = new MutableObject<Component>();
+            var component = new MutableObject<UIComponent>();
 
             var name = field.getName();
             var translationKey = "text.config." + configName + ".option." + optionKey.asString() + "." + name;
@@ -185,7 +185,7 @@ public class ConfigurableStructLayout<T> extends FlowLayout {
             // ------------------------------------
 
             var sliderControls = optionComponent.childById(FlowLayout.class, "slider-controls");
-            var textControls = (ParentComponent) textBoxFactory(defaultValue, Objects::toString, configTextBox -> {
+            var textControls = (ParentUIComponent) textBoxFactory(defaultValue, Objects::toString, configTextBox -> {
                 configTextBox.configureForNumber(clazz);
 
                 var predicate = configTextBox.applyPredicate();
@@ -281,7 +281,7 @@ public class ConfigurableStructLayout<T> extends FlowLayout {
     public <F extends Enum<?>> ConfigurableStructLayout<T> createEnumButton(Field field, F defaultValue) {
         var factory = new ComponentFactory<T, F>() {
             @Override
-            public Component createComponent(T t, Field field, Function<T, F> getter, BiConsumer<T, F> setter, String translationKey, ParentComponent parentComponent) {
+            public UIComponent createComponent(T t, Field field, Function<T, F> getter, BiConsumer<T, F> setter, String translationKey, ParentUIComponent parentComponent) {
                 var optionComponent = model.expandTemplate(FlowLayout.class,
                         "enum-config-option",
                         OptionComponents.packParameters(translationKey, getter.apply(t).toString())
@@ -338,7 +338,7 @@ public class ConfigurableStructLayout<T> extends FlowLayout {
     public ConfigurableStructLayout<T> createBooleanButton(Field field, Boolean defaultValue) {
         var factory = new ComponentFactory<T, Boolean>() {
             @Override
-            public Component createComponent(T t, Field field, Function<T, Boolean> getter, BiConsumer<T, Boolean> setter, String translationKey, ParentComponent parentComponent) {
+            public UIComponent createComponent(T t, Field field, Function<T, Boolean> getter, BiConsumer<T, Boolean> setter, String translationKey, ParentUIComponent parentComponent) {
                 FlowLayout optionComponent = model.expandTemplate(FlowLayout.class,
                         "boolean-toggle-config-option",
                         OptionComponents.packParameters(translationKey, getter.apply(t).toString())
@@ -388,7 +388,7 @@ public class ConfigurableStructLayout<T> extends FlowLayout {
     }
 
     public interface ComponentFactory<T, F> {
-        Component createComponent(T t, Field field, Function<T, F> getter, BiConsumer<T, F> setter, String translation, ParentComponent parentComponent);
+        UIComponent createComponent(T t, Field field, Function<T, F> getter, BiConsumer<T, F> setter, String translation, ParentUIComponent parentComponent);
     }
 
     static class ReflectOps {

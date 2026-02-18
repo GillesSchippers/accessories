@@ -16,7 +16,6 @@ import io.wispforest.endec.impl.StructEndecBuilder;
 import io.wispforest.endec.impl.StructField;
 import io.wispforest.endec.util.MapCarrierDecodable;
 import io.wispforest.endec.util.MapCarrierEncodable;
-import io.wispforest.owo.mixin.serialization.ForwardingDynamicOpsAccessor;
 import io.wispforest.owo.mixin.serialization.RegistryOpsAccessor;
 import io.wispforest.owo.serialization.CodecUtils;
 import io.wispforest.owo.serialization.RegistriesAttribute;
@@ -366,8 +365,8 @@ public class EndecUtils {
             ? holder.capturedContext().and(assumedContext)
             : null;
 
-        while (rootOps instanceof DelegatingOps<?>) {
-            rootOps = ((ForwardingDynamicOpsAccessor<?>) rootOps).owo$delegate();
+        while (rootOps instanceof DelegatingOps<?> delegatingOps) {
+            rootOps = delegatingOps.delegate();
 
             if (context == null && rootOps instanceof ContextHolder holder) {
                 context = holder.capturedContext().and(assumedContext);

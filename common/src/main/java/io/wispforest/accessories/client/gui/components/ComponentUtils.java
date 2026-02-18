@@ -11,8 +11,8 @@ import io.wispforest.accessories.networking.server.SyncCosmeticToggle;
 import io.wispforest.accessories.pond.ScissorStackManipulation;
 import io.wispforest.owo.ui.base.BaseOwoHandledScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
-import io.wispforest.owo.ui.component.Components;
-import io.wispforest.owo.ui.container.Containers;
+import io.wispforest.owo.ui.component.UIComponents;
+import io.wispforest.owo.ui.container.UIContainers;
 import io.wispforest.owo.ui.container.FlowLayout;
 import io.wispforest.owo.ui.container.ScrollContainer;
 import io.wispforest.owo.ui.core.*;
@@ -34,8 +34,8 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.function.*;
 
-import static io.wispforest.owo.ui.container.Containers.horizontalFlow;
-import static io.wispforest.owo.ui.container.Containers.verticalFlow;
+import static io.wispforest.owo.ui.container.UIContainers.horizontalFlow;
+import static io.wispforest.owo.ui.container.UIContainers.verticalFlow;
 
 public class ComponentUtils {
 
@@ -192,20 +192,20 @@ public class ComponentUtils {
         recursiveSearch(parentComponent, AccessoriesScreen.ExtendedSlotComponent.class, action);
     }
 
-    public static <C extends io.wispforest.owo.ui.core.Component> void recursiveSearch(ParentComponent parentComponent, Class<C> target, Consumer<C> action) {
+    public static <C extends io.wispforest.owo.ui.core.UIComponent> void recursiveSearch(ParentUIComponent parentComponent, Class<C> target, Consumer<C> action) {
         if(parentComponent == null) return;
 
         for (var child : parentComponent.children()) {
             if(target.isInstance(child)) action.accept((C) child);
-            if(child instanceof ParentComponent childParent) recursiveSearch(childParent, target, action);
+            if(child instanceof ParentUIComponent childParent) recursiveSearch(childParent, target, action);
         }
     }
 
-    public static <S extends Slot & SlotTypeAccessible> Pair<io.wispforest.owo.ui.core.Component, PositionedRectangle> createSlotWithToggle(S slot, Function<Integer, AccessoriesScreen.ExtendedSlotComponent> slotBuilder) {
+    public static <S extends Slot & SlotTypeAccessible> Pair<io.wispforest.owo.ui.core.UIComponent, PositionedRectangle> createSlotWithToggle(S slot, Function<Integer, AccessoriesScreen.ExtendedSlotComponent> slotBuilder) {
         return createSlotWithToggle(slot, slotBuilder, true);
     }
 
-    public static <S extends Slot & SlotTypeAccessible> Pair<io.wispforest.owo.ui.core.Component, @Nullable PositionedRectangle> createSlotWithToggle(S slot, Function<Integer, AccessoriesScreen.ExtendedSlotComponent> slotBuilder, boolean createButton) {
+    public static <S extends Slot & SlotTypeAccessible> Pair<io.wispforest.owo.ui.core.UIComponent, @Nullable PositionedRectangle> createSlotWithToggle(S slot, Function<Integer, AccessoriesScreen.ExtendedSlotComponent> slotBuilder, boolean createButton) {
         var btnPosition = Positioning.absolute(14, -1); //15, -1
 
         @Nullable ButtonComponent toggleBtn = null;
@@ -243,7 +243,7 @@ public class ComponentUtils {
                 (context, button, delta) -> {});
     }
 
-    public static io.wispforest.owo.ui.core.Component createGroupToggle(AccessoriesScreen screen, SlotGroup group) {
+    public static io.wispforest.owo.ui.core.UIComponent createGroupToggle(AccessoriesScreen screen, SlotGroup group) {
         var tooltipData = new ArrayList<Component>();
 
         tooltipData.add(Component.translatable(group.translation()));
@@ -291,22 +291,22 @@ public class ComponentUtils {
             context.pop();
         };
 
-        return Components.button(Component.empty(), onToggle)
+        return UIComponents.button(Component.empty(), onToggle)
                 .renderer(texturedRenderer);
     }
 
-    public static io.wispforest.owo.ui.core.Component createIconButton(Consumer<ButtonComponent> action, int size, Consumer<ButtonComponent> builder, Function<ButtonComponent, Identifier> textureGetter) {
+    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, Consumer<ButtonComponent> builder, Function<ButtonComponent, Identifier> textureGetter) {
         return createIconButton(action, size, null, builder, (context, buttonComponent) -> textureGetter.apply(buttonComponent));
     }
 
-    public static io.wispforest.owo.ui.core.Component createIconButton(Consumer<ButtonComponent> action, int size, Consumer<ButtonComponent> builder, BiFunction<OwoUIDrawContext, ButtonComponent, Identifier> textureGetter) {
+    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, Consumer<ButtonComponent> builder, BiFunction<OwoUIDrawContext, ButtonComponent, Identifier> textureGetter) {
         return createIconButton(action, size, null, builder, textureGetter);
     }
 
-    public static io.wispforest.owo.ui.core.Component createIconButton(Consumer<ButtonComponent> action, int size, String id, Consumer<ButtonComponent> builder, BiFunction<OwoUIDrawContext, ButtonComponent, Identifier> textureGetter) {
+    public static io.wispforest.owo.ui.core.UIComponent createIconButton(Consumer<ButtonComponent> action, int size, String id, Consumer<ButtonComponent> builder, BiFunction<OwoUIDrawContext, ButtonComponent, Identifier> textureGetter) {
         return verticalFlow(Sizing.content(), Sizing.content())
                 .child(
-                        Components.button(Component.empty(), action)
+                        UIComponents.button(Component.empty(), action)
                                 .sizing(Sizing.fixed(size))
                                 .configure(builder)
                                 .renderer((ctx, btn, delta) -> {
@@ -317,7 +317,7 @@ public class ComponentUtils {
                 );
     }
 
-    public static <C extends BaseOwoHandledScreen.SlotComponent> io.wispforest.owo.ui.core.Component createCraftingComponent(int start, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler, boolean isVertical) {
+    public static <C extends BaseOwoHandledScreen.SlotComponent> io.wispforest.owo.ui.core.UIComponent createCraftingComponent(int start, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler, boolean isVertical) {
         for (int i = start; i < 5 + start; i++) slotEnabler.accept(i);
 
         var craftingLayout = isVertical ? verticalFlow(Sizing.fixed(18 * 2), Sizing.content()) : horizontalFlow(Sizing.content(), Sizing.fixed(18 * 2));
@@ -344,12 +344,12 @@ public class ComponentUtils {
                 .horizontalAlignment(HorizontalAlignment.CENTER)
                 .verticalAlignment(VerticalAlignment.CENTER);
 
-        return Containers.verticalFlow(Sizing.content(), Sizing.content())
+        return UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                 .child(craftingLayout)
                 .padding(Insets.of(7, 7, 4, 7));
     }
 
-    public static <C extends BaseOwoHandledScreen.SlotComponent> io.wispforest.owo.ui.core.Component createPlayerInv(int start, int end, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler) {
+    public static <C extends BaseOwoHandledScreen.SlotComponent> io.wispforest.owo.ui.core.UIComponent createPlayerInv(int start, int end, Function<Integer, C> componentFactory, Consumer<Integer> slotEnabler) {
         var playerLayout = verticalFlow(Sizing.content(), Sizing.content());
 
         int row = 0;
