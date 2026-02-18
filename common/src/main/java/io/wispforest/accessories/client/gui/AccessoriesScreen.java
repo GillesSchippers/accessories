@@ -99,7 +99,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                 var ids = unpackRules.pollLast();
 
                 stream = stream.flatMap(component -> {
-                    if (component instanceof ParentComponent parent) {
+                    if (component instanceof ParentUIComponent parent) {
                         if (ids.isEmpty()) return parent.children().stream();
 
                         if (parent.id() != null) {
@@ -716,7 +716,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
         setupPadding(this.topComponent, hasSideBar, primaryLayout);
     }
 
-    public void setupPadding(AccessoriesContainingLayout<?> accessoriesComponent, boolean hasSideBar, ParentComponent primaryLayout) {
+    public void setupPadding(AccessoriesContainingLayout<?> accessoriesComponent, boolean hasSideBar, ParentUIComponent primaryLayout) {
         if (this.getDefaultedData(PlayerOptions.ENTITY_CENTERED)) {
             // (((Accessories Component Width) + 3) | 0) + (120) + ((3 + (30)) | 0
             var padding = 0;
@@ -917,7 +917,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                 if (groupFilter != null) panel.child(groupFilter);
             }
         } else {
-            var component = rootComponent().childById(ParentComponent.class, "group_filter_holder");
+            var component = rootComponent().childById(ParentUIComponent.class, "group_filter_holder");
 
             if (component != null) component.remove();
         }
@@ -971,7 +971,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
         if (groupButtons.isEmpty()) return null;
 
-        var baseButtonLayout = (ParentComponent) Containers.verticalFlow(Sizing.content(), Sizing.content())
+        var baseButtonLayout = (ParentUIComponent) Containers.verticalFlow(Sizing.content(), Sizing.content())
                 .children(groupButtons)
                 .gap(1);
 
@@ -1185,7 +1185,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
         }
 
         @Override
-        public void draw(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta) {
+        public void draw(OwoUIGraphics context, int mouseX, int mouseY, float partialTicks, float delta) {
             //super.draw(context, mouseX, mouseY, partialTicks, delta);
             this.didDraw = true;
 
@@ -1193,7 +1193,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
         }
 
         @Override
-        public void drawTooltip(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta) {
+        public void drawTooltip(OwoUIGraphics context, int mouseX, int mouseY, float partialTicks, float delta) {
             var slot = this.slot();
 
             if(slot != null) {

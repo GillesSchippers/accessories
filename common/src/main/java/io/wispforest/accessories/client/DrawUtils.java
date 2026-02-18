@@ -1,7 +1,7 @@
 package io.wispforest.accessories.client;
 
 import io.wispforest.owo.ui.core.Color;
-import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.OwoUIGraphics;
 import io.wispforest.owo.ui.core.OwoUIPipelines;
 import io.wispforest.owo.ui.renderstate.GradientQuadElementRenderState;
 import net.minecraft.client.Minecraft;
@@ -52,7 +52,7 @@ public class DrawUtils {
         );
     }
 
-    public static void drawRectOutlineWithSpectrum(OwoUIDrawContext ctx, int x, int y, int width, int height, float alpha, boolean vertical) {
+    public static void drawRectOutlineWithSpectrum(OwoUIGraphics ctx, int x, int y, int width, int height, float alpha, boolean vertical) {
         innerFill(ctx, x, y, width, 1, alpha, !vertical);
         innerFill(ctx, x, y + height - 1, width, 1, alpha, !vertical);
 

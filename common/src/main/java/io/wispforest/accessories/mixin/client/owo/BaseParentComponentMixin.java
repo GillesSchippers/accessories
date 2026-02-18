@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.wispforest.accessories.client.gui.AccessoriesScreen;
 import io.wispforest.accessories.client.gui.components.ComponentUtils;
 import io.wispforest.owo.ui.base.BaseParentUIComponent;
-import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.OwoUIGraphics;
 import io.wispforest.owo.ui.core.ParentUIComponent;
 import io.wispforest.owo.ui.core.PositionedRectangle;
 import io.wispforest.owo.util.pond.OwoSlotExtension;
@@ -17,8 +17,8 @@ public abstract class BaseParentComponentMixin {
 
     //--
 
-    @WrapOperation(method = "drawChildren", at = @At(value = "INVOKE", target = "Lio/wispforest/owo/ui/core/OwoUIDrawContext;intersectsScissor(Lio/wispforest/owo/ui/core/PositionedRectangle;)Z"))
-    private boolean disableSlotsNotDrawn(OwoUIDrawContext instance, PositionedRectangle other, Operation<Boolean> original) {
+    @WrapOperation(method = "drawChildren", at = @At(value = "INVOKE", target = "Lio/wispforest/owo/ui/core/OwoUIGraphics;intersectsScissor(Lio/wispforest/owo/ui/core/PositionedRectangle;)Z"))
+    private boolean disableSlotsNotDrawn(OwoUIGraphics instance, PositionedRectangle other, Operation<Boolean> original) {
         var result = original.call(instance, other);
 
         if (!result) {

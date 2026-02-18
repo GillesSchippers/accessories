@@ -4,7 +4,7 @@ import io.wispforest.accessories.Accessories;
 import io.wispforest.accessories.client.DrawUtils;
 import io.wispforest.owo.ui.base.BaseUIComponent;
 import io.wispforest.owo.ui.core.AnimatableProperty;
-import io.wispforest.owo.ui.core.OwoUIDrawContext;
+import io.wispforest.owo.ui.core.OwoUIGraphics;
 import io.wispforest.owo.ui.core.PositionedRectangle;
 import io.wispforest.owo.ui.core.Sizing;
 import net.minecraft.resources.Identifier;
@@ -54,7 +54,7 @@ public class ArrowComponent extends BaseUIComponent {
         this.visibleArea.update(delta);
     }
 
-    public void draw(OwoUIDrawContext context, int mouseX, int mouseY, float partialTicks, float delta) {
+    public void draw(OwoUIGraphics context, int mouseX, int mouseY, float partialTicks, float delta) {
         context.push();
         context.translate((float) this.x, (float) this.y);
 
