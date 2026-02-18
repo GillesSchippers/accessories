@@ -366,7 +366,7 @@ public class EndecUtils {
             : null;
 
         while (rootOps instanceof DelegatingOps<?> delegatingOps) {
-            rootOps = delegatingOps.delegated();
+            rootOps = delegatingOps.delegate();
 
             if (context == null && rootOps instanceof ContextHolder holder) {
                 context = holder.capturedContext().and(assumedContext);
