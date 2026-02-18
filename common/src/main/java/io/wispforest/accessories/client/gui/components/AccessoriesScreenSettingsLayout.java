@@ -251,7 +251,7 @@ public class AccessoriesScreenSettingsLayout extends FlowLayout implements Playe
         return (maxWidth - 14) / columnAmount;
     }
 
-    private Component ofSettingsToggle(PlayerOption<Boolean> playerOption, BiConsumer<PlayerOption<Boolean>, Boolean> onChange) {
+    private UIComponent ofSettingsToggle(PlayerOption<Boolean> playerOption, BiConsumer<PlayerOption<Boolean>, Boolean> onChange) {
         return ofSettingsToggle(playerOption.name(), () -> this.getDefaultedData(playerOption), newValue -> {
             this.setData(playerOption, newValue);
             onChange.accept(playerOption, newValue);
