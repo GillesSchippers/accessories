@@ -2,7 +2,7 @@ package io.wispforest.accessories.client.gui.components;
 
 import com.mojang.math.Axis;
 import io.wispforest.owo.ui.component.EntityComponent;
-import io.wispforest.owo.ui.core.Component;
+import io.wispforest.owo.ui.core.UIComponent;
 import io.wispforest.owo.ui.core.OwoUIGraphics;
 import io.wispforest.owo.ui.core.Sizing;
 import io.wispforest.owo.ui.renderstate.EntityElementRenderState;
@@ -85,9 +85,9 @@ public class InventoryEntityComponent<E extends Entity> extends EntityComponent<
     public float xOffset = 0.0f;
     public float yOffset = 0.0f;
 
-    private TriConsumer<OwoUIGraphics, Component, List<Runnable>> renderWrapping = (ctx, component, runnables) -> runnables.forEach(Runnable::run);
+    private TriConsumer<OwoUIGraphics, UIComponent, List<Runnable>> renderWrapping = (ctx, component, runnables) -> runnables.forEach(Runnable::run);
 
-    public InventoryEntityComponent<E> renderWrapping(TriConsumer<OwoUIGraphics, Component, List<Runnable>> renderWrapping) {
+    public InventoryEntityComponent<E> renderWrapping(TriConsumer<OwoUIGraphics, UIComponent, List<Runnable>> renderWrapping) {
         this.renderWrapping = renderWrapping;
 
         return this;

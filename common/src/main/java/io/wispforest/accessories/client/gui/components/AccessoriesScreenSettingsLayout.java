@@ -267,7 +267,7 @@ public class AccessoriesScreenSettingsLayout extends FlowLayout implements Playe
                                     var newValue = !getter.get();
 
                                     btn.setMessage(createToggleText(name, false, newValue));
-                                    btn.setTooltip(createToggleText(name, true, newValue));
+                                    btn.tooltip(createToggleText(name, true, newValue));
 
                                     setter.accept(newValue);
                                 })
@@ -408,7 +408,7 @@ public class AccessoriesScreenSettingsLayout extends FlowLayout implements Playe
         var value = getter.get();
 
         btn.setMessage(createToggleText(baseId, false, value));
-        btn.setTooltip(createToggleText(baseId, true, value));
+        btn.tooltip(createToggleText(baseId, true, value));
 
         runnable.accept(value);
 
@@ -421,7 +421,7 @@ public class AccessoriesScreenSettingsLayout extends FlowLayout implements Playe
         var value = this.getDefaultedData(PlayerOptions.WIDGET_TYPE);
 
         btn.setMessage(widgetTypeToggleMessage(value, false));
-        btn.setTooltip(widgetTypeToggleMessage(value, true));
+        btn.tooltip(widgetTypeToggleMessage(value, true));
     }
 
     public int getMinimumColumnAmount() {

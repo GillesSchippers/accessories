@@ -470,7 +470,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
         this.enableSlot(offHandIndex);
 
-        var offhandComponent = Containers.verticalFlow(Sizing.content(), Sizing.content())
+        var offhandComponent = UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                 .child(this.slotAsComponent(offHandIndex).margins(Insets.of(1)))
                 .padding(Insets.of(7, 7, 7, 4))
                 .allowOverflow(true);
@@ -483,20 +483,20 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
             }
         }
                  .child(
-                        Containers.verticalFlow(Sizing.content(), Sizing.content()) // Sizing.expand()
+                        UIContainers.verticalFlow(Sizing.content(), Sizing.content()) // Sizing.expand()
                                 .child(offhandComponent)
                                 .allowOverflow(true)
                                 .positioning(Positioning.absolute(-(18 + 4 + 7), 51))
 //                                .margins(Insets.top(54 + 4))
                 )
                 .child(
-                        Containers.verticalFlow(Sizing.fixed(162), Sizing.fixed(76))
+                        UIContainers.verticalFlow(Sizing.fixed(162), Sizing.fixed(76))
                                 .child(playerInv)
 //                                        .margins(Insets.left(4))
                                 .id("bottom_component_holder")
                 )
                 .child(
-                        Containers.verticalFlow(Sizing.content(), Sizing.content())
+                        UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                                 .positioning(Positioning.absolute(162, -7))
                                 .configure((FlowLayout component) -> {
                                     if (this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID)) {
@@ -527,22 +527,22 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
         //--
 
-        var primaryLayout = (FlowLayout) Containers.horizontalFlow(Sizing.content(), Sizing.fixed(140))
+        var primaryLayout = (FlowLayout) UIContainers.horizontalFlow(Sizing.content(), Sizing.fixed(140))
                 .gap(2)
                 .horizontalAlignment(HorizontalAlignment.CENTER)
                 .id("armor_entity_layout");
 
         {
-            var armorSlotsLayout = Containers.verticalFlow(Sizing.content(), Sizing.content())
+            var armorSlotsLayout = UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                     .configure((FlowLayout layout) -> layout.allowOverflow(true));
 
-            var outerLeftArmorLayout = Containers.horizontalFlow(Sizing.content(), Sizing.content())
+            var outerLeftArmorLayout = UIContainers.horizontalFlow(Sizing.content(), Sizing.content())
                     .child(armorSlotsLayout);
 
-            var cosmeticArmorSlotsLayout = Containers.verticalFlow(Sizing.content(), Sizing.content())
+            var cosmeticArmorSlotsLayout = UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                             .configure((FlowLayout layout) -> layout.allowOverflow(true));
 
-            var outerRightArmorLayout = Containers.horizontalFlow(Sizing.content(), Sizing.content())
+            var outerRightArmorLayout = UIContainers.horizontalFlow(Sizing.content(), Sizing.content())
                     .child(cosmeticArmorSlotsLayout);
 
             for (int i = 0; i < menu.addedArmorSlots() / 2; i++) {
@@ -558,9 +558,9 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
             //--
 
-            var entityContainer = Containers.stack(Sizing.content(), Sizing.fixed(126 + 14))
+            var entityContainer = UIContainers.stack(Sizing.content(), Sizing.fixed(126 + 14))
                     .child(
-                            Containers.verticalFlow(Sizing.content(), Sizing.content())
+                            UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                                     .child(
                                             createEntityComponent()
                                     ).surface((ctx, component) -> {
@@ -575,7 +575,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                                     .id("entity_renderer_holder")
                     )
                     .child(
-                            Containers.verticalFlow(Sizing.fixed(0), Sizing.fixed(0))
+                            UIContainers.verticalFlow(Sizing.fixed(0), Sizing.fixed(0))
                                     .surface((ctx, component) -> {
                                         // TODO: MAKE NO EQUIPMENT SLOT VARIANT...
                                         var surfaceType = Math.max(1, Math.min((this.getMenu().addedArmorSlots() / 2), 4)) + "_slots";
@@ -608,7 +608,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                                     (btn) -> {
                                         showCosmeticState(!showCosmeticState());
 
-                                        btn.setTooltip(createToggleText("slot_cosmetics", false, showCosmeticState()));
+                                        btn.tooltip(createToggleText("slot_cosmetics", false, showCosmeticState()));
 
                                         var component = rootComponent().childById(AccessoriesContainingLayout.class, AccessoriesContainingLayout.defaultID());
 
@@ -693,7 +693,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
         //--
 
-        var baseLayout = Containers.verticalFlow(Sizing.content(), Sizing.content())
+        var baseLayout = UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                 .gap(2)
                 .children(baseChildren.reversed())
                 .allowOverflow(true);
@@ -884,13 +884,13 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
     //--
     @Nullable
     private io.wispforest.owo.ui.core.UIComponent createSideBarOptions() {
-        var accessoriesTogglePanel = (FlowLayout) Containers.verticalFlow(Sizing.content(), Sizing.content())
+        var accessoriesTogglePanel = (FlowLayout) UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                 .id("accessories_toggle_panel");
 
         var groupFilterComponent = createGroupFilters();
 
         if(groupFilterComponent != null) {
-            return Containers.verticalFlow(Sizing.content(), Sizing.content())
+            return UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                     .child(
                             accessoriesTogglePanel.child(groupFilterComponent)
                                     .padding(Insets.of(7))
@@ -971,7 +971,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
         if (groupButtons.isEmpty()) return null;
 
-        var baseButtonLayout = (ParentUIComponent) Containers.verticalFlow(Sizing.content(), Sizing.content())
+        var baseButtonLayout = (ParentUIComponent) UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                 .children(groupButtons)
                 .gap(1);
 
@@ -999,7 +999,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
             this.groupFilterScrollable = null;
         }
 
-        return Containers.verticalFlow(Sizing.content(), Sizing.content())
+        return UIContainers.verticalFlow(Sizing.content(), Sizing.content())
                 .child(
                         ComponentUtils.createIconButton(
                                 (btn) -> {
@@ -1008,7 +1008,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                                 },
                                 14,
                                 (btn) -> {
-                                    btn.setTooltip(Component.translatable(Accessories.translationKey("reset.group_filter")));
+                                    btn.tooltip(Component.translatable(Accessories.translationKey("reset.group_filter")));
                                 },
                                 (btn) -> {
                                     return Accessories.of("textures/gui/reset_icon" + (btn.isHovered() ? "_hovered" : "") + ".png");
@@ -1097,7 +1097,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
                 this.setData(PlayerOptions.SHOW_CRAFTING_GRID, !this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID));
 
-                btn.setTooltip(createToggleText("crafting_grid", true, this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID)));
+                btn.tooltip(createToggleText("crafting_grid", true, this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID)));
 
                 this.toggleCraftingGrid();
             },
@@ -1137,7 +1137,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
         boolean value = !(boolean) this.getDefaultedData(PlayerOptions.ADVANCED_SETTINGS);
         this.setData(PlayerOptions.ADVANCED_SETTINGS, value);
 
-        btn.setTooltip(createToggleText("advanced_options", true, this.getDefaultedData(PlayerOptions.ADVANCED_SETTINGS)));
+        btn.tooltip(createToggleText("advanced_options", true, this.getDefaultedData(PlayerOptions.ADVANCED_SETTINGS)));
 
         this.swapBottomComponentHolder();
     }
