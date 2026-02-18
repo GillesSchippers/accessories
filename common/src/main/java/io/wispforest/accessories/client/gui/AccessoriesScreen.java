@@ -608,7 +608,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                                     (btn) -> {
                                         showCosmeticState(!showCosmeticState());
 
-                                        btn.tooltip(createToggleText("slot_cosmetics", false, showCosmeticState()));
+                                        btn.setTooltip(createToggleText("slot_cosmetics", false, showCosmeticState()));
 
                                         var component = rootComponent().childById(AccessoriesContainingLayout.class, AccessoriesContainingLayout.defaultID());
 
@@ -1008,7 +1008,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
                                 },
                                 14,
                                 (btn) -> {
-                                    btn.tooltip(Component.translatable(Accessories.translationKey("reset.group_filter")));
+                                    btn.setTooltip(Component.translatable(Accessories.translationKey("reset.group_filter")));
                                 },
                                 (btn) -> {
                                     return Accessories.of("textures/gui/reset_icon" + (btn.isHovered() ? "_hovered" : "") + ".png");
@@ -1097,7 +1097,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
 
                 this.setData(PlayerOptions.SHOW_CRAFTING_GRID, !this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID));
 
-                btn.tooltip(createToggleText("crafting_grid", true, this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID)));
+                btn.setTooltip(createToggleText("crafting_grid", true, this.getDefaultedData(PlayerOptions.SHOW_CRAFTING_GRID)));
 
                 this.toggleCraftingGrid();
             },
@@ -1137,7 +1137,7 @@ public class AccessoriesScreen extends BaseOwoContainerScreen<FlowLayout, Access
         boolean value = !(boolean) this.getDefaultedData(PlayerOptions.ADVANCED_SETTINGS);
         this.setData(PlayerOptions.ADVANCED_SETTINGS, value);
 
-        btn.tooltip(createToggleText("advanced_options", true, this.getDefaultedData(PlayerOptions.ADVANCED_SETTINGS)));
+        btn.setTooltip(createToggleText("advanced_options", true, this.getDefaultedData(PlayerOptions.ADVANCED_SETTINGS)));
 
         this.swapBottomComponentHolder();
     }
