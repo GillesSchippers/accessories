@@ -222,7 +222,7 @@ public class ConfigurableStructLayout<T> extends FlowLayout {
                     controlsLayout.child(sliderControls);
                 }
 
-                button.tooltip(textMode.isTrue()
+                button.setTooltip(textMode.isTrue()
                         ? net.minecraft.network.chat.Component.translatable("text.owo.config.button.range.edit_with_slider")
                         : net.minecraft.network.chat.Component.translatable("text.owo.config.button.range.edit_as_text")
                 );
