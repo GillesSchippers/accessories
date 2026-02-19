@@ -188,8 +188,7 @@ public record AccessoryItemAttributeModifiers(List<AccessoryItemAttributeModifie
 
                     var attributeRegistry = context.requireAttributeValue(RegistriesAttribute.REGISTRIES)
                             .infoGetter().lookup(Registries.ATTRIBUTE)
-                            .orElseThrow(IllegalStateException::new)
-                            .getter();
+                            .orElseThrow(IllegalStateException::new);
 
                     return attributeRegistry.getResourceKey(attribute)
                             .orElseThrow(IllegalStateException::new)
