@@ -53,44 +53,140 @@
   "accessories.advanced_options.toggle.enabled.tooltip": "Ekstra Ekran yapılandırma seçeneklerini gizle",
   "accessories.advanced_options.toggle.disabled.tooltip": "Ekstra Ekran yapılandırma seçeneklerini göster",
   "accessories.unused_slots.label": "Kullanılmayan Yuvalar:",
-  "accessories.unused_slots.toggle.enabled": "[✔] Gösterilen",
-  "accessories.unused_slots.toggle.disabled": "[❌] Gizlenen",
+  "accessories.unused_slots.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.unused_slots.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.unused_slots.toggle.enabled.tooltip": "Tüm Kullanılmayan Yuvaları Gizle",
   "accessories.unused_slots.toggle.disabled.tooltip": "Tüm Kullanılmayan Yuvaları Göster",
   "accessories.column_amount_slider.label": "Sütun Miktarı:",
   "accessories.column_amount_slider.tooltip": "Aksesuar Düzeni için Sütun miktarını ayarlamak için kullanılan kaydırıcı",
   "accessories.widget_type.label": "Widget Varyantı:",
-  "accessories.widget_type.paginated": "[☰] Sayfalandırılmış",
+  "accessories.widget_type.paginated": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☰", "color": "#347ecf"},
+    {"text": "]", "color": "gray"},
+    " Paginated"
+  ],
   "accessories.widget_type.paginated.tooltip": "Aksesuar Yuvaları için Sayfalandırılmış Düzen",
-  "accessories.widget_type.scrollable": "[⏷] Kaydırılabilir",
+  "accessories.widget_type.scrollable": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "⏷", "color": "#953abd"},
+    {"text": "]", "color": "gray"},
+    " Scrollable"
+  ],
   "accessories.main_widget_position.label": "Widget Konumu:",
-  "accessories.main_widget_position.toggle.enabled": "[←] Sol",
-  "accessories.main_widget_position.toggle.disabled": "[→] Sağ",
+  "accessories.main_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "←", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Left"
+  ],
+  "accessories.main_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "→", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Right"
+  ],
   "accessories.main_widget_position.toggle.enabled.tooltip": "Aksesuarlar Widget'ını Sağa Taşı",
   "accessories.main_widget_position.toggle.disabled.tooltip": "Aksesuarlar Widget'ını Sola Taşı",
   "accessories.group_filter.label": "Grup Filtreleri:",
-  "accessories.group_filter.toggle.enabled": "[✔] Gösterilen",
-  "accessories.group_filter.toggle.disabled": "[❌] Gizlenen",
+  "accessories.group_filter.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.group_filter.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.group_filter.toggle.enabled.tooltip": "Grup filtresi widget'ını gizle",
   "accessories.group_filter.toggle.disabled.tooltip": "Grup filtresi widget'ını göster",
   "accessories.side_widget_position.label": "Yan Konumu:",
-  "accessories.side_widget_position.toggle.enabled": "[()] Birlikte",
-  "accessories.side_widget_position.toggle.disabled": "[||] Ayrı",
+  "accessories.side_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "()", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Together"
+  ],
+  "accessories.side_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "||", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Separate"
+  ],
   "accessories.side_widget_position.toggle.enabled.tooltip": "Yan Widget'ı Aksesuarlar Widget'ıyla birlikte olacak şekilde taşı",
   "accessories.side_widget_position.toggle.disabled.tooltip": "Yan Widget'ı Aksesuarlar Widget'ının karşısına taşı",
   "accessories.dark_mode_toggle.label": "Tema Modu:",
-  "accessories.dark_mode_toggle.toggle.enabled": "[☽] Koyu",
-  "accessories.dark_mode_toggle.toggle.disabled": "[☀] Aydınlık",
+  "accessories.dark_mode_toggle.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☽", "color": "#3d29c2"},
+    {"text": "]", "color": "gray"},
+    " Dark"
+  ],
+  "accessories.dark_mode_toggle.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☀", "color": "#bffa9b"},
+    {"text": "]", "color": "gray"},
+    " Light"
+  ],
   "accessories.dark_mode_toggle.toggle.enabled.tooltip": "Temayı Aydınlık Mod olarak değiştir",
   "accessories.dark_mode_toggle.toggle.disabled.tooltip": "Temayı Koyu Mod olarak değiştir",
   "accessories.show_equipped_stack_slot_type.label": "Donatılmış Tür:",
-  "accessories.show_equipped_stack_slot_type.toggle.enabled": "[✔] Gösterilen",
-  "accessories.show_equipped_stack_slot_type.toggle.disabled": "[❌] Gizlenen",
+  "accessories.show_equipped_stack_slot_type.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.show_equipped_stack_slot_type.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.show_equipped_stack_slot_type.toggle.enabled.tooltip": "Donatılmış istif Yuva türünü gizle",
   "accessories.show_equipped_stack_slot_type.toggle.disabled.tooltip": "Donatılmış istif Yuva türünü göster",
   "accessories.entity_look_at_cursor.label": "Fareye bak:",
-  "accessories.entity_look_at_cursor.toggle.enabled": "[✔] Etkin",
-  "accessories.entity_look_at_cursor.toggle.disabled": "[❌] Devre Dışı",
+  "accessories.entity_look_at_cursor.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Enabled"
+  ],
+  "accessories.entity_look_at_cursor.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Disabled"
+  ],
   "accessories.entity_look_at_cursor.toggle.enabled.tooltip": "İmlece bakmayı devre dışı bırak",
   "accessories.entity_look_at_cursor.toggle.disabled.tooltip": "İmlece bakmayı etkinleştir",
   "accessories.lines.toggle.enabled.tooltip": "Tüm Çizgi Oluşturmayı Gizle",

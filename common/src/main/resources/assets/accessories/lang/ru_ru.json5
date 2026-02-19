@@ -55,44 +55,140 @@
   "accessories.advanced_options.toggle.enabled.tooltip": "Скрыть дополнительные параметры конфигурации экрана",
   "accessories.advanced_options.toggle.disabled.tooltip": "Показать дополнительные параметры конфигурации экрана",
   "accessories.unused_slots.label": "Неиспользуемые слоты:",
-  "accessories.unused_slots.toggle.enabled": "[✔] Показаны",
-  "accessories.unused_slots.toggle.disabled": "[❌] Скрыты",
+  "accessories.unused_slots.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.unused_slots.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.unused_slots.toggle.enabled.tooltip": "Скрыть все неиспользуемые слоты",
   "accessories.unused_slots.toggle.disabled.tooltip": "Показать все неиспользуемые слоты",
   "accessories.column_amount_slider.label": "Количество столбцов:",
   "accessories.column_amount_slider.tooltip": "Ползунок, используемый для регулировки количества столбцов в компоновке аксессуаров",
   "accessories.widget_type.label": "Вариант виджета:",
-  "accessories.widget_type.paginated": "[☰] Постраничный",
+  "accessories.widget_type.paginated": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☰", "color": "#347ecf"},
+    {"text": "]", "color": "gray"},
+    " Paginated"
+  ],
   "accessories.widget_type.paginated.tooltip": "Постраничная компоновка слотов аксессуаров",
-  "accessories.widget_type.scrollable": "[⏷] Прокручиваемый",
+  "accessories.widget_type.scrollable": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "⏷", "color": "#953abd"},
+    {"text": "]", "color": "gray"},
+    " Scrollable"
+  ],
   "accessories.main_widget_position.label": "Положение виджета:",
-  "accessories.main_widget_position.toggle.enabled": "[←] Слева",
-  "accessories.main_widget_position.toggle.disabled": "[→] Справа",
+  "accessories.main_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "←", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Left"
+  ],
+  "accessories.main_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "→", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Right"
+  ],
   "accessories.main_widget_position.toggle.enabled.tooltip": "Переместить виджет аксессуаров вправо",
   "accessories.main_widget_position.toggle.disabled.tooltip": "Переместите виджет аксессуаров влево",
   "accessories.group_filter.label": "Групповой фильтр:",
-  "accessories.group_filter.toggle.enabled": "[✔] Показан",
-  "accessories.group_filter.toggle.disabled": "[❌] Скрыт",
+  "accessories.group_filter.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.group_filter.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.group_filter.toggle.enabled.tooltip": "Скрыть виджет группового фильтра",
   "accessories.group_filter.toggle.disabled.tooltip": "Показать виджет группового фильтра",
   "accessories.side_widget_position.label": "Боковое положение:",
-  "accessories.side_widget_position.toggle.enabled": "[()] Вместе",
-  "accessories.side_widget_position.toggle.disabled": "[||] Раздельно",
+  "accessories.side_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "()", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Together"
+  ],
+  "accessories.side_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "||", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Separate"
+  ],
   "accessories.side_widget_position.toggle.enabled.tooltip": "Переместить боковой виджет, чтобы он был рядом с виджетом аксессуаров",
   "accessories.side_widget_position.toggle.disabled.tooltip": "Переместить боковой виджет так, чтобы он был противоположен виджету аксессуаров",
   "accessories.dark_mode_toggle.label": "Тема:",
-  "accessories.dark_mode_toggle.toggle.enabled": "[☽] Тёмная",
-  "accessories.dark_mode_toggle.toggle.disabled": "[☀] Светлая",
+  "accessories.dark_mode_toggle.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☽", "color": "#3d29c2"},
+    {"text": "]", "color": "gray"},
+    " Dark"
+  ],
+  "accessories.dark_mode_toggle.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☀", "color": "#bffa9b"},
+    {"text": "]", "color": "gray"},
+    " Light"
+  ],
   "accessories.dark_mode_toggle.toggle.enabled.tooltip": "Изменить тему на светлую",
   "accessories.dark_mode_toggle.toggle.disabled.tooltip": "Изменить тему на тёмную",
   "accessories.show_equipped_stack_slot_type.label": "Тип надетого:",
-  "accessories.show_equipped_stack_slot_type.toggle.enabled": "[✔] Показан",
-  "accessories.show_equipped_stack_slot_type.toggle.disabled": "[❌] Скрыт",
+  "accessories.show_equipped_stack_slot_type.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.show_equipped_stack_slot_type.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.show_equipped_stack_slot_type.toggle.enabled.tooltip": "Скрыть тип слота надетого предмета",
   "accessories.show_equipped_stack_slot_type.toggle.disabled.tooltip": "Показать тип слота надетого предмета",
   "accessories.entity_look_at_cursor.label": "Взгляд на мышь:",
-  "accessories.entity_look_at_cursor.toggle.enabled": "[✔] Включён",
-  "accessories.entity_look_at_cursor.toggle.disabled": "[❌] Отключён",
+  "accessories.entity_look_at_cursor.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Enabled"
+  ],
+  "accessories.entity_look_at_cursor.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Disabled"
+  ],
   "accessories.entity_look_at_cursor.toggle.enabled.tooltip": "Отключить взгляд на курсор",
   "accessories.entity_look_at_cursor.toggle.disabled.tooltip": "Включить взгляд на курсор",
   "accessories.lines.toggle.enabled.tooltip": "Скрыть рендеринг всех линий",

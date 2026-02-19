@@ -55,44 +55,140 @@
   "accessories.advanced_options.toggle.enabled.tooltip": "Ocultar opciones de configuración de pantalla adicionales",
   "accessories.advanced_options.toggle.disabled.tooltip": "Mostrar opciones de configuración de pantalla adicionales",
   "accessories.unused_slots.label": "Ranuras No Usadas:",
-  "accessories.unused_slots.toggle.enabled": "[✔] Mostradas",
-  "accessories.unused_slots.toggle.disabled": "[❌] Ocultas",
+  "accessories.unused_slots.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.unused_slots.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.unused_slots.toggle.enabled.tooltip": "Ocultar todas las Ranuras No Usadas",
   "accessories.unused_slots.toggle.disabled.tooltip": "Mostrar todas las Ranuras No Usadas",
   "accessories.column_amount_slider.label": "Cantidad de Columnas:",
   "accessories.column_amount_slider.tooltip": "Deslizador utilizado para ajustar la cantidad de columnas para el diseño de Accesories",
   "accessories.widget_type.label": "Variante de Widget:",
-  "accessories.widget_type.paginated": "[☰] Paginado",
+  "accessories.widget_type.paginated": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☰", "color": "#347ecf"},
+    {"text": "]", "color": "gray"},
+    " Paginated"
+  ],
   "accessories.widget_type.paginated.tooltip": "Un diseño paginado para las ranuras de Accesories",
-  "accessories.widget_type.scrollable": "[⏷] Desplazable",
+  "accessories.widget_type.scrollable": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "⏷", "color": "#953abd"},
+    {"text": "]", "color": "gray"},
+    " Scrollable"
+  ],
   "accessories.main_widget_position.label": "Posición del Widget:",
-  "accessories.main_widget_position.toggle.enabled": "[←] Izquierda",
-  "accessories.main_widget_position.toggle.disabled": "[→] Derecha",
+  "accessories.main_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "←", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Left"
+  ],
+  "accessories.main_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "→", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Right"
+  ],
   "accessories.main_widget_position.toggle.enabled.tooltip": "Mover el Widget de Accesories a la Derecha",
   "accessories.main_widget_position.toggle.disabled.tooltip": "Mover el Widget de Accesories a la Izquierda",
   "accessories.group_filter.label": "Filtros de Grupo:",
-  "accessories.group_filter.toggle.enabled": "[✔] Mostrados",
-  "accessories.group_filter.toggle.disabled": "[❌] Ocultos",
+  "accessories.group_filter.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.group_filter.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.group_filter.toggle.enabled.tooltip": "Ocultar el widget de filtro de grupo",
   "accessories.group_filter.toggle.disabled.tooltip": "Mostrar el widget de filtro de grupo",
   "accessories.side_widget_position.label": "Posición Lateral:",
-  "accessories.side_widget_position.toggle.enabled": "[()] Juntos",
-  "accessories.side_widget_position.toggle.disabled": "[||] Separado",
+  "accessories.side_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "()", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Together"
+  ],
+  "accessories.side_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "||", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Separate"
+  ],
   "accessories.side_widget_position.toggle.enabled.tooltip": "Mover el widget lateral junto al widget de Accesories",
   "accessories.side_widget_position.toggle.disabled.tooltip": "Mover el widget lateral opuesto al widget de Accesories",
   "accessories.dark_mode_toggle.label": "Modo de Tema:",
-  "accessories.dark_mode_toggle.toggle.enabled": "[☽] Oscuro",
-  "accessories.dark_mode_toggle.toggle.disabled": "[☀] Claro",
+  "accessories.dark_mode_toggle.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☽", "color": "#3d29c2"},
+    {"text": "]", "color": "gray"},
+    " Dark"
+  ],
+  "accessories.dark_mode_toggle.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☀", "color": "#bffa9b"},
+    {"text": "]", "color": "gray"},
+    " Light"
+  ],
   "accessories.dark_mode_toggle.toggle.enabled.tooltip": "Cambiar tema a modo claro",
   "accessories.dark_mode_toggle.toggle.disabled.tooltip": "Cambiar tema a modo oscuro",
   "accessories.show_equipped_stack_slot_type.label": "Tipo Equipado:",
-  "accessories.show_equipped_stack_slot_type.toggle.enabled": "[✔] Mostrados",
-  "accessories.show_equipped_stack_slot_type.toggle.disabled": "[❌] Ocultos",
+  "accessories.show_equipped_stack_slot_type.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
+  "accessories.show_equipped_stack_slot_type.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.show_equipped_stack_slot_type.toggle.enabled.tooltip": "Ocultar tipo de ranura equipada",
   "accessories.show_equipped_stack_slot_type.toggle.disabled.tooltip": "Mostrar tipo de ranura equipada",
   "accessories.entity_look_at_cursor.label": "Mirar al Ratón:",
-  "accessories.entity_look_at_cursor.toggle.enabled": "[✔] Habilitado",
-  "accessories.entity_look_at_cursor.toggle.disabled": "[❌] Deshabilitado",
+  "accessories.entity_look_at_cursor.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Enabled"
+  ],
+  "accessories.entity_look_at_cursor.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Disabled"
+  ],
   "accessories.entity_look_at_cursor.toggle.enabled.tooltip": "Deshabilitar mirar al cursor",
   "accessories.entity_look_at_cursor.toggle.disabled.tooltip": "Habilitar mirar al cursor",
   "accessories.lines.toggle.enabled.tooltip": "Ocultar toda la renderización de líneas",

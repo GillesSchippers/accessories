@@ -61,54 +61,150 @@
   "accessories.advanced_options.toggle.disabled.tooltip": "顯示額外飾品介面設定",
 
   "accessories.unused_slots.label": "未使用的飾品欄：",
-  "accessories.unused_slots.toggle.enabled": "[✔]顯示",
+  "accessories.unused_slots.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
   "accessories.unused_slots.toggle.enabled.tooltip": "隱藏所有未使用的飾品欄",
-  "accessories.unused_slots.toggle.disabled": "[❌]隱藏",
+  "accessories.unused_slots.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.unused_slots.toggle.disabled.tooltip": "顯示所有未使用的飾品欄",
 
   "accessories.column_amount_slider.label": "欄數：",
   "accessories.column_amount_slider.tooltip": "用於調整飾品佈局欄數的滑桿",
 
   "accessories.widget_type.label": "飾品介面變體：",
-  "accessories.widget_type.paginated": "[☰] 分頁",
+  "accessories.widget_type.paginated": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☰", "color": "#347ecf"},
+    {"text": "]", "color": "gray"},
+    " Paginated"
+  ],
   "accessories.widget_type.paginated.tooltip": "有欄列的飾品布局",
-  "accessories.widget_type.scrollable": "[⏷] 捲動",
+  "accessories.widget_type.scrollable": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "⏷", "color": "#953abd"},
+    {"text": "]", "color": "gray"},
+    " Scrollable"
+  ],
   "accessories.widget_type.scrollable.tooltip": "可捲動的飾品佈局",
 
   "accessories.main_widget_position.label": "飾品介面按鈕位置：",
-  "accessories.main_widget_position.toggle.enabled": "[←] 左",
+  "accessories.main_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "←", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Left"
+  ],
   "accessories.main_widget_position.toggle.enabled.tooltip": "移動飾品欄按鈕到右側",
-  "accessories.main_widget_position.toggle.disabled": "[→] 右",
+  "accessories.main_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "→", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Right"
+  ],
   "accessories.main_widget_position.toggle.disabled.tooltip": "移動飾品欄按鈕到左側",
 
   "accessories.group_filter.label": "群組篩選器：",
-  "accessories.group_filter.toggle.enabled": "[✔] 顯示",
+  "accessories.group_filter.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
   "accessories.group_filter.toggle.enabled.tooltip": "隱藏群組篩選器按鈕",
-  "accessories.group_filter.toggle.disabled": "[❌] 隱藏",
+  "accessories.group_filter.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.group_filter.toggle.disabled.tooltip": "顯示群組篩選器按鈕",
 
   "accessories.side_widget_position.label": "邊界位置：",
-  "accessories.side_widget_position.toggle.enabled": "[()] 合併",
+  "accessories.side_widget_position.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "()", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Together"
+  ],
   "accessories.side_widget_position.toggle.enabled.tooltip": "將側邊小工具移到與配件小工具在一起",
-  "accessories.side_widget_position.toggle.disabled": "[||] 分離",
+  "accessories.side_widget_position.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "||", "color": "#32a852"},
+    {"text": "]", "color": "gray"},
+    " Separate"
+  ],
   "accessories.side_widget_position.toggle.disabled.tooltip": "將側邊小工具移到配件小工具的對面",
 
   "accessories.dark_mode_toggle.label": "主題：",
-  "accessories.dark_mode_toggle.toggle.enabled": "[☽] 暗色",
+  "accessories.dark_mode_toggle.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☽", "color": "#3d29c2"},
+    {"text": "]", "color": "gray"},
+    " Dark"
+  ],
   "accessories.dark_mode_toggle.toggle.enabled.tooltip": "切換到亮色主題",
-  "accessories.dark_mode_toggle.toggle.disabled": "[☀] 亮色",
+  "accessories.dark_mode_toggle.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "☀", "color": "#bffa9b"},
+    {"text": "]", "color": "gray"},
+    " Light"
+  ],
   "accessories.dark_mode_toggle.toggle.disabled.tooltip": "切換到暗色主題",
 
   "accessories.show_equipped_stack_slot_type.label": "已裝備的飾品欄類型：",
-  "accessories.show_equipped_stack_slot_type.toggle.enabled": "[✔] 顯示",
+  "accessories.show_equipped_stack_slot_type.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Shown"
+  ],
   "accessories.show_equipped_stack_slot_type.toggle.enabled.tooltip": "隱藏已裝備的飾品欄類型",
-  "accessories.show_equipped_stack_slot_type.toggle.disabled": "[❌] 隱藏",
+  "accessories.show_equipped_stack_slot_type.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Hidden"
+  ],
   "accessories.show_equipped_stack_slot_type.toggle.disabled.tooltip": "顯示已裝備的飾品欄類型",
 
   "accessories.entity_look_at_cursor.label": "看向游標：",
-  "accessories.entity_look_at_cursor.toggle.enabled": "[✔] 啟用",
+  "accessories.entity_look_at_cursor.toggle.enabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "✔", "color": "#28FFBF"},
+    {"text": "]", "color": "gray"},
+    " Enabled"
+  ],
   "accessories.entity_look_at_cursor.toggle.enabled.tooltip": "禁止玩家模型看向游標",
-  "accessories.entity_look_at_cursor.toggle.disabled": "[❌] 停用",
+  "accessories.entity_look_at_cursor.toggle.disabled": [
+    "",
+    {"text": "[", "color": "gray"},
+    {"text": "❌", "color": "#EB1D36"},
+    {"text": "]", "color": "gray"},
+    " Disabled"
+  ],
   "accessories.entity_look_at_cursor.toggle.disabled.tooltip": "啟用玩家模型看向游標",
 
   "accessories.lines.toggle.enabled.tooltip": "隱藏所有行",
