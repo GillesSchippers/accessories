@@ -302,14 +302,7 @@
   "accessories.crafting_grid.toggle.enabled.tooltip": "Hide crafting grid",
   "accessories.crafting_grid.toggle.disabled.tooltip": "Show crafting grid",
 
-  "accessories.selection_screen.message": [
-    "Below is a set of screen options that you \n",
-    "can choose from depending on the style of \n",
-    "Modpack or your play style. \n\n",
-    "Do note that you can change such within the \n",
-    "Accessories Config if the given option is not \n",
-    "to your liking."
-  ],
+  "accessories.selection_screen.message": "Below is a set of screen options that you \ncan choose from depending on the style of \nModpack or your play style. \n\nDo note that you can change such within the \nAccessories Config if the given option is not \nto your liking.",
 
   "accessories.back.screen": "To Previous Screen",
   "accessories.open.screen": "Open Accessories Screen",
@@ -321,98 +314,59 @@
   "text.config.accessories.title": "Accessories Config",
 
   "text.config.accessories.option.useExperimentalCaching": "Use Experimental Caching",
-  "text.config.accessories.option.useExperimentalCaching.tooltip": [
-    "Attempts to cache various ItemStack lookups\n",
-    "to be more performant but may cause issues."
-  ],
+  "text.config.accessories.option.useExperimentalCaching.tooltip": "Attempts to cache various ItemStack lookups\nto be more performant but may cause issues.",
 
   "text.config.accessories.category.contentOptions": "Content Options",
-  "text.config.accessories.category.contentOptions.tooltip": [
-    "Contains more content focused options like glider and totem equippablity"
-  ],
+  "text.config.accessories.category.contentOptions.tooltip": "Contains more content focused options like glider and totem equippablity",
 
   "text.config.accessories.option.contentOptions.validGliderSlots": "Valid Glider Slots",
-  "text.config.accessories.option.contentOptions.validGliderSlots.tooltip": [
-    "Adds the slots to which a Glider item is allowed to be equipped."
-  ],
+  "text.config.accessories.option.contentOptions.validGliderSlots.tooltip": "Adds the slots to which a Glider item is allowed to be equipped.",
 
   "text.config.accessories.option.contentOptions.allowGliderEquip": "Allow Gliders to be Equip",
-  "text.config.accessories.option.contentOptions.allowGliderEquip.tooltip": [
-    "Toggles the ability for Gliders to be equipped within Accessories Slots."
-  ],
+  "text.config.accessories.option.contentOptions.allowGliderEquip.tooltip": "Toggles the ability for Gliders to be equipped within Accessories Slots.",
 
   "text.config.accessories.option.contentOptions.validTotemSlots": "Valid Totem Slots",
-  "text.config.accessories.option.contentOptions.validTotemSlots.tooltip": [
-    "Adds the slots to which a Totem item is allowed to be equipped."
-  ],
+  "text.config.accessories.option.contentOptions.validTotemSlots.tooltip": "Adds the slots to which a Totem item is allowed to be equipped.",
 
   "text.config.accessories.option.contentOptions.allowTotemEquip": "Allow Totems to be Equip",
-  "text.config.accessories.option.contentOptions.allowTotemEquip.tooltip": [
-    "Toggles the ability for Totems to be equipped within Accessories Slots."
-  ],
+  "text.config.accessories.option.contentOptions.allowTotemEquip.tooltip": "Toggles the ability for Totems to be equipped within Accessories Slots.",
 
   "text.config.accessories.option.contentOptions.validBannerSlots": "Valid Banner Slots",
-  "text.config.accessories.option.contentOptions.validBannerSlots.tooltip": [
-    "Adds the slots to which a Banner item is allowed to be equipped."
-  ],
+  "text.config.accessories.option.contentOptions.validBannerSlots.tooltip": "Adds the slots to which a Banner item is allowed to be equipped.",
 
   "text.config.accessories.option.contentOptions.allowBannerEquip": "Allow Banners to be Equip",
-  "text.config.accessories.option.contentOptions.allowBannerEquip.tooltip": [
-    "Toggles the ability for Banners to be equipped within Accessories Slots."
-  ],
+  "text.config.accessories.option.contentOptions.allowBannerEquip.tooltip": "Toggles the ability for Banners to be equipped within Accessories Slots.",
 
   "text.config.accessories.category.clientOptions": "Client Options",
-  "text.config.accessories.category.clientOptions.tooltip": [
-    "Contains more generic client side options for rendering or player input"
-  ],
+  "text.config.accessories.category.clientOptions.tooltip": "Contains more generic client side options for rendering or player input",
 
   "text.config.accessories.option.clientOptions.forceNullRenderReplacement": "Force Empty Render Replacement",
-  "text.config.accessories.option.clientOptions.forceNullRenderReplacement.tooltip": [
-    "Forces any registered render found to be no\n",
-    "rendering to instead use default rendering."
-  ],
+  "text.config.accessories.option.clientOptions.forceNullRenderReplacement.tooltip": "Forces any registered render found to be no\nrendering to instead use default rendering.",
 
   "text.config.accessories.option.clientOptions.disableEmptySlotScreenError": "Disable Empty Accessory Error",
-  "text.config.accessories.option.clientOptions.disableEmptySlotScreenError.tooltip": [
-    "Disables the error message displayed if the accessories\n",
-    "screen is opened and no used slots were found."
-  ],
+  "text.config.accessories.option.clientOptions.disableEmptySlotScreenError.tooltip": "Disables the error message displayed if the accessories\nscreen is opened and no used slots were found.",
 
   "text.config.accessories.option.clientOptions.showCosmeticAccessories": "Show Item Cosmetic Rendering",
-  "text.config.accessories.option.clientOptions.showCosmeticAccessories.tooltip": [
-    "Enables/Disables the rendering of cosmetic item variants if equipped."
-  ],
+  "text.config.accessories.option.clientOptions.showCosmeticAccessories.tooltip": "Enables/Disables the rendering of cosmetic item variants if equipped.",
 
   "text.config.accessories.option.clientOptions.disabledDefaultRenders": "Disabled Default Rendering",
-  "text.config.accessories.option.clientOptions.disabledDefaultRenders.tooltip": [
-    "Disables the included default renderer rendering of items if being used."
-  ],
+  "text.config.accessories.option.clientOptions.disabledDefaultRenders.tooltip": "Disables the included default renderer rendering of items if being used.",
 
   "text.config.accessories.option.clientOptions.equipControl": "Quick Hand Equip Mode",
-  "text.config.accessories.option.clientOptions.equipControl.tooltip": [
-    "Changes the mode used to quickly equip a stack from your hand."
-  ],
+  "text.config.accessories.option.clientOptions.equipControl.tooltip": "Changes the mode used to quickly equip a stack from your hand.",
 
   "text.config.accessories.enum.playerEquipControl.must_crouch": "Requires Crouch",
   "text.config.accessories.enum.playerEquipControl.must_not_crouch": "Without Crouch",
   "text.config.accessories.enum.playerEquipControl.disabled": "Disabled",
 
   "text.config.accessories.option.screenOptions.prioritizeCreativeScreen": "Prioritize Opening Creative Screen",
-  "text.config.accessories.option.screenOptions.prioritizeCreativeScreen.tooltip": [
-    "Will attempt to open the Creative Screen instead of the Accessories\n",
-    "screen while in creative mode."
-  ],
+  "text.config.accessories.option.screenOptions.prioritizeCreativeScreen.tooltip": "Will attempt to open the Creative Screen instead of the Accessories\nscreen while in creative mode.",
 
   "text.config.accessories.category.screenOptions": "Screen Options",
-  "text.config.accessories.category.screenOptions.tooltip": [
-    "Contains all screen configuration options for all variants and injected button offset"
-  ],
+  "text.config.accessories.category.screenOptions.tooltip": "Contains all screen configuration options for all variants and injected button offset",
 
   "text.config.accessories.option.screenOptions.selectedScreenType": "Selected Screen Type",
-  "text.config.accessories.option.screenOptions.selectedScreenType.tooltip": [
-    "Used to adjust what screen will be used, none will\n",
-    "bring a prompt for user selection."
-  ],
+  "text.config.accessories.option.screenOptions.selectedScreenType.tooltip": "Used to adjust what screen will be used, none will\nbring a prompt for user selection.",
 
   "text.config.accessories.enum.screenType.none": "Undecided",
   "text.config.accessories.enum.screenType.original": "Original",
@@ -421,10 +375,7 @@
   "text.config.accessories.section.accessories_screen": "Accessory Screen Specific Options",
 
   "text.config.accessories.option.screenOptions.defaultValues": "Global Screen Options",
-  "text.config.accessories.option.screenOptions.defaultValues.tooltip": [
-    "Used to adjust the DEFAULT screen options like amount of columns,\n",
-    "the given theme, etc. Such can also be adjusted in game per user."
-  ],
+  "text.config.accessories.option.screenOptions.defaultValues.tooltip": "Used to adjust the DEFAULT screen options like amount of columns,\nthe given theme, etc. Such can also be adjusted in game per user.",
 
   "text.config.accessories.option.screenOptions.backButtonClosesScreen": "Close screen instead of going back to previous screen",
   "text.config.accessories.option.screenOptions.backButtonClosesScreen.tooltip": "Attempts to close the screen instead of going back to the previous inventory screen if possible.",
@@ -436,27 +387,16 @@
   "text.config.accessories.option.screenOptions.showUnusedSlots.tooltip": "Toggles filtering of unused slots",
 
   "text.config.accessories.option.screenOptions.allowSlotScrolling": "Allow Screen Slot Scrolling",
-  "text.config.accessories.option.screenOptions.allowSlotScrolling.tooltip": [
-    "Useful if the given mod allows for scrolling stacks\n",
-    "leading to issues when going though accessories."
-  ],
+  "text.config.accessories.option.screenOptions.allowSlotScrolling.tooltip": "Useful if the given mod allows for scrolling stacks\nleading to issues when going though accessories.",
 
   "text.config.accessories.option.screenOptions.showEquippedStackSlotType": "Show Equipped Stacks Slot Type",
-  "text.config.accessories.option.screenOptions.showEquippedStackSlotType.tooltip": [
-    "Shows the given slot type that the given stack is equipped in within its tooltip."
-  ],
+  "text.config.accessories.option.screenOptions.showEquippedStackSlotType.tooltip": "Shows the given slot type that the given stack is equipped in within its tooltip.",
 
   "text.config.accessories.option.screenOptions.entityLooksAtMouseCursor": "Make Entity follow the Mouse Cursor",
-  "text.config.accessories.option.screenOptions.entityLooksAtMouseCursor.tooltip": [
-    "If enabled, makes the entity follow the mouse cursor\n",
-    "otherwise it allows for manual rotation of the entity."
-  ],
+  "text.config.accessories.option.screenOptions.entityLooksAtMouseCursor.tooltip": "If enabled, makes the entity follow the mouse cursor\notherwise it allows for manual rotation of the entity.",
 
   "text.config.accessories.option.screenOptions.allowSideBarCraftingGrid": "Allow Crafting Grid within Sidebar",
-  "text.config.accessories.option.screenOptions.allowSideBarCraftingGrid.tooltip": [
-    "If group filters are not present, it will attempt to put\n",
-    "the crafting grid within the sidebar instead down below."
-  ],
+  "text.config.accessories.option.screenOptions.allowSideBarCraftingGrid.tooltip": "If group filters are not present, it will attempt to put\nthe crafting grid within the sidebar instead down below.",
 
   "text.config.accessories.section.button_offsets": "Injected Button Offsets",
 
@@ -480,28 +420,20 @@
   "text.config.accessories.section.experimental": "Experimental Screen",
 
   "text.config.accessories.option.screenOptions.isDarkMode": "Use Dark mode theme",
-  "text.config.accessories.option.screenOptions.isDarkMode.tooltip": [
-    "Changes the theming for the experimental screen to be dark mode."
-  ],
+  "text.config.accessories.option.screenOptions.isDarkMode.tooltip": "Changes the theming for the experimental screen to be dark mode.",
 
   "text.config.accessories.option.screenOptions.alwaysShowCraftingGrid": "Always show Crafting grid",
-  "text.config.accessories.option.screenOptions.alwaysShowCraftingGrid.tooltip": [
-    "Will remove the toggle button for the crafting grid and always show it within the experimental screen."
-  ],
+  "text.config.accessories.option.screenOptions.alwaysShowCraftingGrid.tooltip": "Will remove the toggle button for the crafting grid and always show it within the experimental screen.",
 
   "text.config.accessories.section.legacy": "Original Screen",
 
   "text.config.accessories.option.screenOptions.showGroupTabs": "Show quick seeking group tabs",
-  "text.config.accessories.option.screenOptions.showGroupTabs.tooltip": [
-    "Toggles the group tabs within the original screen to be shown or hidden."
-  ],
+  "text.config.accessories.option.screenOptions.showGroupTabs.tooltip": "Toggles the group tabs within the original screen to be shown or hidden.",
 
   "text.config.accessories.section.hover": "Hovered Effects",
 
   "text.config.accessories.category.screenOptions.hoveredOptions": "Hovered Options",
-  "text.config.accessories.category.screenOptions.hoveredOptions.tooltip": [
-    "Options to control the hovered entry rendering effects."
-  ],
+  "text.config.accessories.category.screenOptions.hoveredOptions.tooltip": "Options to control the hovered entry rendering effects.",
 
   "text.config.accessories.option.screenOptions.hoveredOptions.brightenHovered": "Brighten Hovered",
   "text.config.accessories.option.screenOptions.hoveredOptions.cycleBrightness": "Cycle Brightness",
@@ -511,9 +443,7 @@
   "text.config.accessories.option.screenOptions.hoveredOptions.clickbait": "Clickbait",
 
   "text.config.accessories.category.screenOptions.unHoveredOptions": "UnHovered Options",
-  "text.config.accessories.category.screenOptions.unHoveredOptions.tooltip": [
-    "Options to control the non hovered entries rendering effects."
-  ],
+  "text.config.accessories.category.screenOptions.unHoveredOptions.tooltip": "Options to control the non hovered entries rendering effects.",
 
   "text.config.accessories.option.screenOptions.unHoveredOptions.renderUnHovered": "Render UnHovered",
   "text.config.accessories.option.screenOptions.unHoveredOptions.darkenUnHovered": "Darken UnHovered",
@@ -521,10 +451,7 @@
   "text.config.accessories.option.screenOptions.unHoveredOptions.darkenedOpacity": "Darkened Opacity",
 
   "text.config.accessories.option.disabledDefaultRenders": "Disabled Default Renderers",
-  "text.config.accessories.option.disabledDefaultRenders.tooltip": [
-    "Useful to disable default rendering for a given slot either\n",
-    "for specifically block or/and item renderings"
-  ],
+  "text.config.accessories.option.disabledDefaultRenders.tooltip": "Useful to disable default rendering for a given slot either\nfor specifically block or/and item renderings",
 
   "text.config.accessories.option.clientOptions.disabledDefaultRenders.slotType": "Slot",
   "text.config.accessories.option.clientOptions.disabledDefaultRenders.targetType": "Type",
@@ -534,11 +461,7 @@
   "text.config.accessories.enum.targetType.all": "All",
 
   "text.config.accessories.option.modifiers": "Slot Amount Modifiers",
-  "text.config.accessories.option.modifiers.tooltip": [
-    "Useful to add offset values to a given slot type without\n",
-    "needing a datapack as it allows for both positive or\n",
-    "negative offset value."
-  ],
+  "text.config.accessories.option.modifiers.tooltip": "Useful to add offset values to a given slot type without\nneeding a datapack as it allows for both positive or\nnegative offset value.",
 
   "text.config.accessories.option.modifiers.slotType": "Slot",
   "text.config.accessories.option.modifiers.amount": "Offset"
