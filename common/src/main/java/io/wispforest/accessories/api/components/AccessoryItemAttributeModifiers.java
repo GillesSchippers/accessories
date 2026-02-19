@@ -186,14 +186,10 @@ public record AccessoryItemAttributeModifiers(List<AccessoryItemAttributeModifie
                         return Accessories.of(path);
                     }
 
-                    var attributeRegistry = context.requireAttributeValue(RegistriesAttribute.REGISTRIES)
-                            .infoGetter().lookup(Registries.ATTRIBUTE)
-                            .orElseThrow(IllegalStateException::new)
-                            .getter();
-
-                    return attributeRegistry.getResourceKey(attribute)
-                            .orElseThrow(IllegalStateException::new)
-                            .location();
+                    return context.requireAttributeValue(RegistriesAttribute.REGISTRIES)
+                            .registryManager()
+                            .lookupOrThrow(Registries.ATTRIBUTE)
+                            .getKey(attribute);
                 }
         );
 
