@@ -187,7 +187,7 @@ public record AccessoryItemAttributeModifiers(List<AccessoryItemAttributeModifie
                     }
 
                     return context.requireAttributeValue(RegistriesAttribute.REGISTRIES)
-                            .registryManager()
+                            .registryAccess()
                             .lookupOrThrow(Registries.ATTRIBUTE)
                             .getKey(attribute);
                 }
